@@ -1,0 +1,16 @@
+// Импорт библиотеки Normalize
+@import "normalize";
+
+// Пример подключения скаченного шрифта 
+@font-face {
+  font-family: "Roboto";
+  src: url("/dist/fonts/Roboto.woff2") format("woff2"),
+    url("/dist/fonts/Roboto.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: "Roboto";
+}
