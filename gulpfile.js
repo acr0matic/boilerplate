@@ -1,9 +1,7 @@
 var gulp = require("gulp");
-var gulpif = require("gulp-if");
 var del = require("del");
 var changed = require("gulp-changed");
 var rename = require("gulp-rename");
-var filesize = require("gulp-filesize");
 
 var sass = require("gulp-sass");
 var autoprefixer = require("gulp-autoprefixer");
@@ -15,7 +13,6 @@ var uglify = require("gulp-uglify");
 
 var htmlReplace = require("gulp-html-replace");
 var htmlMin = require("gulp-htmlmin");
-var injectPartials = require("gulp-inject-partials");
 
 var imagemin = require("gulp-imagemin");
 var favicons = require("gulp-favicons");
@@ -28,11 +25,11 @@ var config = {
   js_in: "src/scripts/**/*.js",
   img_in: "src/img/**/*.{jpg,jpeg,png,gif,svg}",
   html_in: "src/*.html",
-  scss_in: "src/scss/**/*.scss",
-  compiled_ccs_in: "src/css/*.css",
+  scss_in: "src/styles/scss/**/*.scss",
+  compiled_ccs_in: "src/styles/compiled/*.css",
   favicon_in: "src/img/favicons/*",
 
-  compiled_ccs_out: "src/css/",
+  compiled_ccs_out: "src/styles/compiled/",
   css_out: "dist/css/",
   js_out: "dist/js/",
   img_out: "dist/img/",
@@ -45,7 +42,7 @@ var config = {
   js_out_min_name: "script.min.js",
 
   css_replace_out: "css/style.min.css",
-  js_replace_out: "js/script.min.js"
+  js_replace_out: "js/script.min.js",
 };
 
 gulp.task("clean", () => {
@@ -56,21 +53,16 @@ gulp.task("html", function() {
   return gulp
     .src(config.html_in)
     .pipe(
-      injectPartials({
-        removeTags: true
-      })
-    )
-    .pipe(
       htmlReplace({
         "css": config.css_replace_out,
-        "js": config.js_replace_out
+        "js": config.js_replace_out,
       })
     )
     .pipe(
       htmlMin({
         sortAttributes: true,
         sortClassName: true,
-        collapseWhitespace: true
+        collapseWhitespace: true,
       })
     )
     .pipe(gulp.dest(config.dist));
@@ -90,13 +82,16 @@ gulp.task("sass", function() {
 });
 
 gulp.task("css-build", function() {
+  return gulp.src(config.compiled_ccs_in).pipe(
+    autoprefixer(["last 15 versions", "> 1%", "ie 8", "ie 7"], {
+      cascade: false,
+    })
+  );
+});
+
+gulp.task("css-minify", function() {
   return gulp
     .src(config.compiled_ccs_in)
-    .pipe(
-      autoprefixer(["last 15 versions", "> 1%", "ie 8", "ie 7"], {
-        cascade: false
-      })
-    )
     .pipe(cleanCSS({ compatibility: "ie8", level: 2 }))
     .pipe(rename(config.css_out_min_name))
     .pipe(gulp.dest(config.css_out));
@@ -108,7 +103,7 @@ gulp.task("scripts-build", function() {
     .pipe(changed(config.js_out))
     .pipe(
       babel({
-        presets: ["@babel/env"]
+        presets: ["@babel/env"],
       })
     )
     .pipe(concat("script.js"))
@@ -117,13 +112,21 @@ gulp.task("scripts-build", function() {
     .pipe(gulp.dest(config.js_out));
 });
 
+gulp.task("scripts-minify", function() {
+    return gulp
+      .src(config.js_in)
+      .pipe(uglify())
+      .pipe(rename(config.js_out_min_name))
+      .pipe(gulp.dest(config.js_out));
+  });
+
 gulp.task("image-min", function() {
   return gulp
     .src(config.img_in)
     .pipe(changed(config.img_out))
     .pipe(
       imagemin({
-        progressive: true
+        progressive: true,
       })
     )
     .pipe(gulp.dest(config.img_out));
@@ -147,8 +150,8 @@ gulp.task("favicons", () => {
           firefox: false,
           yandex: false,
           windows: false,
-          coast: false
-        }
+          coast: false,
+        },
       })
     )
     .pipe(gulp.dest(config.favicon_out));
@@ -156,14 +159,5 @@ gulp.task("favicons", () => {
 
 gulp.task(
   "build",
-  gulp.series(
-    "clean",
-    "html",
-    "scripts-build",
-    "sass",
-    "css-build",
-    "image-min",
-    "fonts",
-    "favicons"
-  )
+  gulp.series("clean", "html", "scripts-build", "scripts-minify", "sass", "css-build", "css-minify", "image-min", "fonts", "favicons")
 );

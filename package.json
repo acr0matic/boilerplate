@@ -4,7 +4,18 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "gulp",
+    "build": "gulp prod --production",
+    "build views": "gulp views --production",
+    "build styles": "gulp styles --production",
+    "build scripts": "gulp scripts --production",
+    "build images": "gulp images --production",
+    "build webp": "gulp webp --production",
+    "build sprites": "gulp sprites --production",
+    "build fonts": "gulp fonts --production",
+    "build favicons": "gulp favicons --production",
+    "style:lint": "stylelint src/**/*.scss || exit 0",
+    "style:fix": "stylelint src/**/*.scss --fix || exit 0"
   },
   "repository": {
     "type": "git",
@@ -13,9 +24,11 @@
   "author": "acr0matic",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.7.7",
-    "@babel/preset-env": "^7.7.7",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "babel-eslint": "^8.2.6",
     "del": "^5.1.0",
+    "eslint": "^4.19.1",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-babel": "^8.0.0",
@@ -23,15 +36,19 @@
     "gulp-clean-css": "^4.2.0",
     "gulp-concat": "^2.6.1",
     "gulp-favicons": "^2.4.0",
-    "gulp-filesize": "0.0.6",
     "gulp-html-replace": "^1.6.2",
     "gulp-htmlmin": "^5.0.1",
-    "gulp-if": "^3.0.0",
     "gulp-imagemin": "^6.2.0",
-    "gulp-inject-partials": "^1.0.5",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-uglify": "^3.0.2",
-    "sass": "^1.23.7"
+    "sass": "^1.25.0",
+    "stylelint": "^13.0.0",
+    "stylelint-config-recommended-scss": "^4.1.0",
+    "stylelint-order": "^4.0.0",
+    "stylelint-scss": "^3.13.0"
+  },
+  "dependencies": {
+    "ajv": "^6.11.0"
   }
 }
