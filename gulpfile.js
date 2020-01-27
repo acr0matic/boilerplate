@@ -6,6 +6,7 @@ var rename = require("gulp-rename");
 var sass = require("gulp-sass");
 var autoprefixer = require("gulp-autoprefixer");
 var cleanCSS = require("gulp-clean-css");
+var purgecss = require('gulp-purgecss')
 
 var concat = require("gulp-concat");
 var babel = require("gulp-babel");
@@ -19,9 +20,11 @@ var favicons = require("gulp-favicons");
 
 sass.compiler = require("node-sass");
 
+// Конфиг файл, здесь прописаны пути
 var config = {
   dist: "dist/",
   src: "src/",
+
   js_in: "src/scripts/**/*.js",
   img_in: "src/img/**/*.{jpg,jpeg,png,gif,svg}",
   html_in: "src/*.html",
@@ -45,10 +48,17 @@ var config = {
   js_replace_out: "js/script.min.js",
 };
 
+// Стандартная задача gulp, она же - задача для разработки
+gulp.task("default", function() {
+  gulp.watch(config.scss_in, gulp.series("sass"));
+});
+
+// Очистка папки с собранным проектом
 gulp.task("clean", () => {
   return del([config.dist]);
 });
 
+// Минификация HTML с сортировкой и изменением путей до файлов стилей/скриптов для собранного проекта
 gulp.task("html", function() {
   return gulp
     .src(config.html_in)
@@ -68,10 +78,7 @@ gulp.task("html", function() {
     .pipe(gulp.dest(config.dist));
 });
 
-gulp.task("default", function() {
-  gulp.watch(config.scss_in, gulp.series("sass"));
-});
-
+// Задача компиляции SCSS кода в CSS
 gulp.task("sass", function() {
   return gulp
     .src(config.scss_in)
@@ -81,6 +88,7 @@ gulp.task("sass", function() {
     .pipe(gulp.dest(config.compiled_ccs_out));
 });
 
+// Задача для проставления вендорных префиксов в стилях
 gulp.task("css-build", function() {
   return gulp.src(config.compiled_ccs_in).pipe(
     autoprefixer(["last 15 versions", "> 1%", "ie 8", "ie 7"], {
@@ -89,14 +97,19 @@ gulp.task("css-build", function() {
   );
 });
 
+// Задача для минификации кода стилей для сокращения скорости загрузки веб-страницы
 gulp.task("css-minify", function() {
   return gulp
     .src(config.compiled_ccs_in)
-    .pipe(cleanCSS({ compatibility: "ie8", level: 2 }))
+    .pipe(cleanCSS({ compatibility: "ie8", level:2}))
+    .pipe(purgecss({
+      content: ['src/**/*.html' , 'src/**/*.js']
+    }))
     .pipe(rename(config.css_out_min_name))
     .pipe(gulp.dest(config.css_out));
 });
 
+// Задача для соединения всех скриптов в один файл с конвертированием их в код для старых браузеров
 gulp.task("scripts-build", function() {
   return gulp
     .src(config.js_in)
@@ -112,6 +125,7 @@ gulp.task("scripts-build", function() {
     .pipe(gulp.dest(config.js_out));
 });
 
+// Задача для минификации кода скриптов для сокращения скорости загрузки веб-страницы
 gulp.task("scripts-minify", function() {
     return gulp
       .src(config.js_in)
@@ -120,6 +134,7 @@ gulp.task("scripts-minify", function() {
       .pipe(gulp.dest(config.js_out));
   });
 
+// Задача по сжатию изображений для сокращения скорости загрузки веб-страницы
 gulp.task("image-min", function() {
   return gulp
     .src(config.img_in)
@@ -132,10 +147,12 @@ gulp.task("image-min", function() {
     .pipe(gulp.dest(config.img_out));
 });
 
+// Перемещаем свои шрифты в папку собранного проекта
 gulp.task("fonts", function() {
   return gulp.src("src/fonts/*").pipe(gulp.dest("dist/fonts"));
 });
 
+// Задача по созданию иконок вкладки браузера для сайта
 gulp.task("favicons", () => {
   return gulp
     .src(config.favicon_in)
@@ -157,6 +174,7 @@ gulp.task("favicons", () => {
     .pipe(gulp.dest(config.favicon_out));
 });
 
+// Задача сборки готового для деплоя проекта в папку dist
 gulp.task(
   "build",
   gulp.series("clean", "html", "scripts-build", "scripts-minify", "sass", "css-build", "css-minify", "image-min", "fonts", "favicons")

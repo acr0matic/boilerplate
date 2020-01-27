@@ -1,10 +1,12 @@
 @charset 'UTF-8';
 
-// Импорт библиотек
+// 1. Импорт библиотек
 @import "vendors/normalize";
-@import "vendors/include-media";
+@import "vendors/family";
+@import "vendors/pretty-checkbox/pretty-checkbox";
+@import "vendors/breakpoint/breakpoint";
 
-// 1. Подключение базовых функций и переменных
+// 2. Подключение базовых функций и переменных
 @import
   'abstracts/variables',
   'abstracts/functions',

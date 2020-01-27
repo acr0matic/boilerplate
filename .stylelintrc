@@ -1,8 +1,8 @@
 {
   "syntax": "scss",
   "plugins": [
-  "stylelint-scss",
-  "stylelint-order"
+    "stylelint-scss",
+    "stylelint-order"
   ],
   "rules" : {
     "comment-no-empty": true,
@@ -12,6 +12,10 @@
     "no-descending-specificity": true,
     "no-empty-source": true,
     "no-invalid-double-slash-comments": true,
+    "order/order": [
+      "custom-properties",
+      "declarations"
+    ],
     "order/properties-order": [
       [{
           "properties": [
@@ -105,14 +109,14 @@
         "message": "Две точки с запятой подряд не должны быть"
     }],
 
-    "font-family-name-quotes": ["always-where-recommended", {
+    "font-family-name-quotes": ["always-unless-keyword", {
         "message": "Название шрифта следует брать в кавычки"
     }],
 
     "font-family-no-duplicate-names": [true, {
         "message": "Нельзя дублировать один и тот же шрифт"
     }],
-    
+
     "font-family-no-missing-generic-family-keyword": [true, {
         "message": "Необходимо указывать sans-serif или serif"
     }],
@@ -215,7 +219,7 @@
     "value-list-comma-space-before": ["never", {
         "message": "В значениях перед запятой пробел запрещен"
     }],
-    
+
     "value-list-comma-newline-after": ["always-multi-line", {
         "message": "Значения свойств должны быть без переносов"
     }],
