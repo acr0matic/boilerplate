@@ -23,15 +23,15 @@ $breakpoint: () !default;
 //////////////////////////////
 // Imports
 //////////////////////////////
-@import "scss/settings";
-@import 'scss/context';
-@import 'scss/helpers';
-@import 'scss/parsers';
-@import 'scss/no-query';
+@import "breakpoint/settings";
+@import 'breakpoint/context';
+@import 'breakpoint/helpers';
+@import 'breakpoint/parsers';
+@import 'breakpoint/no-query';
 
-@import 'scss/respond-to';
+@import 'breakpoint/respond-to';
 
-@import "scss/legacy-settings";
+@import "breakpoint/legacy-settings";
 
 //////////////////////////////
 // Breakpoint Mixin
