@@ -6,7 +6,7 @@ var rename = require("gulp-rename");
 var sass = require("gulp-sass");
 var autoprefixer = require("gulp-autoprefixer");
 var cleanCSS = require("gulp-clean-css");
-var purgecss = require('gulp-purgecss')
+var purgecss = require("gulp-purgecss");
 
 var concat = require("gulp-concat");
 var babel = require("gulp-babel");
@@ -45,7 +45,7 @@ var config = {
   js_out_min_name: "script.min.js",
 
   css_replace_out: "css/style.min.css",
-  js_replace_out: "js/script.min.js",
+  js_replace_out: "js/script.min.js"
 };
 
 // Стандартная задача gulp, она же - задача для разработки
@@ -64,15 +64,15 @@ gulp.task("html", function() {
     .src(config.html_in)
     .pipe(
       htmlReplace({
-        "css": config.css_replace_out,
-        "js": config.js_replace_out,
+        css: config.css_replace_out,
+        js: config.js_replace_out
       })
     )
     .pipe(
       htmlMin({
         sortAttributes: true,
         sortClassName: true,
-        collapseWhitespace: true,
+        collapseWhitespace: true
       })
     )
     .pipe(gulp.dest(config.dist));
@@ -92,7 +92,7 @@ gulp.task("sass", function() {
 gulp.task("css-build", function() {
   return gulp.src(config.compiled_ccs_in).pipe(
     autoprefixer(["last 15 versions", "> 1%", "ie 8", "ie 7"], {
-      cascade: false,
+      cascade: false
     })
   );
 });
@@ -101,10 +101,12 @@ gulp.task("css-build", function() {
 gulp.task("css-minify", function() {
   return gulp
     .src(config.compiled_ccs_in)
-    .pipe(cleanCSS({ compatibility: "ie8", level:2}))
-    .pipe(purgecss({
-      content: ['src/**/*.html' , 'src/**/*.js']
-    }))
+    .pipe(cleanCSS({ compatibility: "ie8", level: 2 }))
+    .pipe(
+      purgecss({
+        content: ["src/**/*.html", "src/**/*.js"]
+      })
+    )
     .pipe(rename(config.css_out_min_name))
     .pipe(gulp.dest(config.css_out));
 });
@@ -116,7 +118,7 @@ gulp.task("scripts-build", function() {
     .pipe(changed(config.js_out))
     .pipe(
       babel({
-        presets: ["@babel/env"],
+        presets: ["@babel/env"]
       })
     )
     .pipe(concat("script.js"))
@@ -127,12 +129,12 @@ gulp.task("scripts-build", function() {
 
 // Задача для минификации кода скриптов для сокращения скорости загрузки веб-страницы
 gulp.task("scripts-minify", function() {
-    return gulp
-      .src(config.js_in)
-      .pipe(uglify())
-      .pipe(rename(config.js_out_min_name))
-      .pipe(gulp.dest(config.js_out));
-  });
+  return gulp
+    .src(config.js_in)
+    .pipe(uglify())
+    .pipe(rename(config.js_out_min_name))
+    .pipe(gulp.dest(config.js_out));
+});
 
 // Задача по сжатию изображений для сокращения скорости загрузки веб-страницы
 gulp.task("image-min", function() {
@@ -141,7 +143,7 @@ gulp.task("image-min", function() {
     .pipe(changed(config.img_out))
     .pipe(
       imagemin({
-        progressive: true,
+        progressive: true
       })
     )
     .pipe(gulp.dest(config.img_out));
@@ -167,8 +169,8 @@ gulp.task("favicons", () => {
           firefox: false,
           yandex: false,
           windows: false,
-          coast: false,
-        },
+          coast: false
+        }
       })
     )
     .pipe(gulp.dest(config.favicon_out));
@@ -177,5 +179,16 @@ gulp.task("favicons", () => {
 // Задача сборки готового для деплоя проекта в папку dist
 gulp.task(
   "build",
-  gulp.series("clean", "html", "scripts-build", "scripts-minify", "sass", "css-build", "css-minify", "image-min", "fonts", "favicons")
+  gulp.series(
+    "clean",
+    "html",
+    "scripts-build",
+    "scripts-minify",
+    "sass",
+    "css-build",
+    "css-minify",
+    "image-min",
+    "fonts",
+    "favicons"
+  )
 );
