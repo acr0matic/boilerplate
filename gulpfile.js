@@ -1,16 +1,16 @@
 var gulp = require("gulp");
 var del = require("del");
-var changed = require("gulp-changed");
 var rename = require("gulp-rename");
 
 var sass = require("gulp-sass");
 var autoprefixer = require("gulp-autoprefixer");
 var cleanCSS = require("gulp-clean-css");
 var purgecss = require("gulp-purgecss");
+var sourcemaps = require("gulp-sourcemaps");
 
 var concat = require("gulp-concat");
 var babel = require("gulp-babel");
-var uglify = require("gulp-uglify");
+var uglify = require("gulp-uglify-es").default;
 
 var htmlReplace = require("gulp-html-replace");
 var htmlMin = require("gulp-htmlmin");
@@ -20,37 +20,51 @@ var favicons = require("gulp-favicons");
 
 sass.compiler = require("node-sass");
 
-// Конфиг файл, здесь прописаны пути
+// Конфиг объект, здесь прописаны все пути для сборщика
 var config = {
   dist: "dist/",
   src: "src/",
 
-  js_in: "src/scripts/**/*.js",
-  img_in: "src/img/**/*.{jpg,jpeg,png,gif,svg}",
-  html_in: "src/*.html",
-  scss_in: "src/styles/scss/**/*.scss",
-  compiled_ccs_in: "src/styles/compiled/*.css",
-  favicon_in: "src/img/favicons/*",
+  js_path: "src/scripts/*.js",
+  js_libraries_path: "src/scripts/libraries/*.js",
+  js_compiled_path: "src/scripts/compiled/script.compiled.js",
+
+  img_path: "src/img/**/*.{jpg,jpeg,png,gif,svg}",
+  html_path: "src/*.html",
+  scss_path: "src/styles/scss/**/*.scss",
+  css_compiled_path: "src/styles/compiled/*.css",
+  favicon_path: "src/img/favicons/*",
 
   compiled_ccs_out: "src/styles/compiled/",
   css_out: "dist/css/",
   js_out: "dist/js/",
+  compiled_js_out: "src/scripts/compiled",
   img_out: "dist/img/",
   html_out: "dist/",
   favicon_out: "dist/img/favicons",
 
   css_out_name: "style.css",
   css_out_min_name: "style.min.css",
+
   js_out_name: "script.js",
+  js_out_compiled_name: "script.compiled.js",
   js_out_min_name: "script.min.js",
 
   css_replace_out: "css/style.min.css",
   js_replace_out: "js/script.min.js"
 };
 
+// Массив путей до других файлов
+var filesToMove = [
+  "src/fonts/**/*.*",
+  "src/videos/**/*.*",
+  "src/music/**/*.*",
+  "src/files/**/*.*"
+];
+
 // Стандартная задача gulp, она же - задача для разработки
 gulp.task("default", function() {
-  gulp.watch(config.scss_in, gulp.series("sass"));
+  gulp.watch(config.scss_path, gulp.series("sass"));
 });
 
 // Очистка папки с собранным проектом
@@ -61,7 +75,7 @@ gulp.task("clean", () => {
 // Минификация HTML с сортировкой и изменением путей до файлов стилей/скриптов для собранного проекта
 gulp.task("html", function() {
   return gulp
-    .src(config.html_in)
+    .src(config.html_path)
     .pipe(
       htmlReplace({
         css: config.css_replace_out,
@@ -81,16 +95,17 @@ gulp.task("html", function() {
 // Задача компиляции SCSS кода в CSS
 gulp.task("sass", function() {
   return gulp
-    .src(config.scss_in)
-    .pipe(changed(config.css_out))
+    .src(config.scss_path)
+    .pipe(sourcemaps.init())
     .pipe(sass())
     .pipe(rename(config.css_out_name))
+    .pipe(sourcemaps.write("."))
     .pipe(gulp.dest(config.compiled_ccs_out));
 });
 
 // Задача для проставления вендорных префиксов в стилях
-gulp.task("css-build", function() {
-  return gulp.src(config.compiled_ccs_in).pipe(
+gulp.task("css-prefix", function() {
+  return gulp.src(config.css_compiled_path).pipe(
     autoprefixer(["last 15 versions", "> 1%", "ie 8", "ie 7"], {
       cascade: false
     })
@@ -100,7 +115,7 @@ gulp.task("css-build", function() {
 // Задача для минификации кода стилей для сокращения скорости загрузки веб-страницы
 gulp.task("css-minify", function() {
   return gulp
-    .src(config.compiled_ccs_in)
+    .src(config.css_compiled_path)
     .pipe(cleanCSS({ compatibility: "ie8", level: 2 }))
     .pipe(
       purgecss({
@@ -111,36 +126,39 @@ gulp.task("css-minify", function() {
     .pipe(gulp.dest(config.css_out));
 });
 
-// Задача для соединения всех скриптов в один файл с конвертированием их в код для старых браузеров
+// Задача для конвертирования скриптов в код для старых браузеров
 gulp.task("scripts-build", function() {
   return gulp
-    .src(config.js_in)
-    .pipe(changed(config.js_out))
+    .src(config.js_path)
     .pipe(
       babel({
         presets: ["@babel/env"]
       })
     )
-    .pipe(concat("script.js"))
-    .pipe(uglify())
-    .pipe(rename(config.js_out_min_name))
-    .pipe(gulp.dest(config.js_out));
+    .pipe(gulp.dest(config.compiled_js_out));
+});
+
+// Задача для соеденинения кода скриптов в один файл для уменьшения количества запросов к серверу
+gulp.task("scripts-concat", function() {
+  return gulp
+    .src([config.js_libraries_path, config.js_path])
+    .pipe(concat(config.js_out_compiled_name))
+    .pipe(gulp.dest(config.compiled_js_out));
 });
 
 // Задача для минификации кода скриптов для сокращения скорости загрузки веб-страницы
 gulp.task("scripts-minify", function() {
   return gulp
-    .src(config.js_in)
-    .pipe(uglify())
+    .src(config.js_compiled_path)
     .pipe(rename(config.js_out_min_name))
+    .pipe(uglify())
     .pipe(gulp.dest(config.js_out));
 });
 
 // Задача по сжатию изображений для сокращения скорости загрузки веб-страницы
 gulp.task("image-min", function() {
   return gulp
-    .src(config.img_in)
-    .pipe(changed(config.img_out))
+    .src(config.img_path)
     .pipe(
       imagemin({
         progressive: true
@@ -149,15 +167,15 @@ gulp.task("image-min", function() {
     .pipe(gulp.dest(config.img_out));
 });
 
-// Перемещаем свои шрифты в папку собранного проекта
-gulp.task("fonts", function() {
-  return gulp.src("src/fonts/*").pipe(gulp.dest("dist/fonts"));
+// Перемещаем другие файлы в директорию с собранным проектом
+gulp.task("move", function() {
+  return gulp.src(filesToMove, { base: "src/" }).pipe(gulp.dest("dist/"));
 });
 
 // Задача по созданию иконок вкладки браузера для сайта
 gulp.task("favicons", () => {
   return gulp
-    .src(config.favicon_in)
+    .src(config.favicon_path)
     .pipe(
       favicons({
         icons: {
@@ -183,12 +201,13 @@ gulp.task(
     "clean",
     "html",
     "scripts-build",
+    "scripts-concat",
     "scripts-minify",
     "sass",
-    "css-build",
+    "css-prefix",
     "css-minify",
     "image-min",
-    "fonts",
+    "move",
     "favicons"
   )
 );
