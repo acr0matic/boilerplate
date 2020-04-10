@@ -32,10 +32,10 @@ var config = {
   img_path: "src/img/**/*.{jpg,jpeg,png,gif,svg}",
   html_path: "src/*.html",
   scss_path: "src/styles/scss/**/*.scss",
-  css_compiled_path: "src/styles/compiled/*.css",
+  css_compiled_path: "src/styles/*.css",
   favicon_path: "src/img/favicons/*",
 
-  compiled_ccs_out: "src/styles/compiled/",
+  compiled_ccs_out: "src/styles/",
   css_out: "dist/css/",
   js_out: "dist/js/",
   compiled_js_out: "src/scripts/compiled",
