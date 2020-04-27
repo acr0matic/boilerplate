@@ -3,7 +3,14 @@
 // -----------------------------------------------------------------------------
 
 // Основной цвет
-$palette-primary: #ffffff !default;
+$palette-primary: #ffffff;
 
 // Максимальная ширина контейнера
-$container-max-width: 1180px !default;
+$container-max-width: 1180px;
+
+// Брейкпоинты для адаптива
+$breakpoint-laptop: 1024px;
+$breakpoint-tablet: 768px;
+$breakpoint-mobile-large: 425px;
+$breakpoint-mobile-large: 375px;
+$breakpoint-mobile-large: 320px;

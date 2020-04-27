@@ -18,6 +18,9 @@ var htmlMin = require("gulp-htmlmin");
 var imagemin = require("gulp-imagemin");
 var favicons = require("gulp-favicons");
 
+var sitemap = require("gulp-sitemap");
+var robots = require("gulp-robots/es5");
+
 sass.compiler = require("node-sass");
 
 // Конфиг объект, здесь прописаны все пути для сборщика
@@ -30,12 +33,12 @@ var config = {
   js_compiled_path: "src/scripts/compiled/script.compiled.js",
 
   img_path: "src/img/**/*.{jpg,jpeg,png,gif,svg}",
-  html_path: "src/*.html",
-  scss_path: "src/styles/scss/**/*.scss",
-  css_compiled_path: "src/styles/*.css",
+  html_path: "src/**/*.html",
+  scss_path: "src/scss/**/*.scss",
+  css_compiled_path: "src/css/*.css",
   favicon_path: "src/img/favicons/*",
 
-  compiled_ccs_out: "src/styles/",
+  compiled_ccs_out: "src/css/",
   css_out: "dist/css/",
   js_out: "dist/js/",
   compiled_js_out: "src/scripts/compiled",
@@ -51,7 +54,7 @@ var config = {
   js_out_min_name: "script.min.js",
 
   css_replace_out: "css/style.min.css",
-  js_replace_out: "js/script.min.js"
+  js_replace_out: "js/script.min.js",
 };
 
 // Массив путей до других файлов
@@ -59,11 +62,11 @@ var filesToMove = [
   "src/fonts/**/*.*",
   "src/videos/**/*.*",
   "src/music/**/*.*",
-  "src/files/**/*.*"
+  "src/files/**/*.*",
 ];
 
 // Стандартная задача gulp, она же - задача для разработки
-gulp.task("default", function() {
+gulp.task("default", function () {
   gulp.watch(config.scss_path, gulp.series("sass"));
 });
 
@@ -73,27 +76,27 @@ gulp.task("clean", () => {
 });
 
 // Минификация HTML с сортировкой и изменением путей до файлов стилей/скриптов для собранного проекта
-gulp.task("html", function() {
+gulp.task("html", function () {
   return gulp
     .src(config.html_path)
     .pipe(
       htmlReplace({
         css: config.css_replace_out,
-        js: config.js_replace_out
+        js: config.js_replace_out,
       })
     )
     .pipe(
       htmlMin({
         sortAttributes: true,
         sortClassName: true,
-        collapseWhitespace: true
+        collapseWhitespace: true,
       })
     )
     .pipe(gulp.dest(config.dist));
 });
 
 // Задача компиляции SCSS кода в CSS
-gulp.task("sass", function() {
+gulp.task("scss", function () {
   return gulp
     .src(config.scss_path)
     .pipe(sourcemaps.init())
@@ -104,22 +107,25 @@ gulp.task("sass", function() {
 });
 
 // Задача для проставления вендорных префиксов в стилях
-gulp.task("css-prefix", function() {
-  return gulp.src(config.css_compiled_path).pipe(
-    autoprefixer(["last 15 versions", "> 1%", "ie 8", "ie 7"], {
-      cascade: false
-    })
-  );
+gulp.task("css-prefix", function () {
+  return gulp
+    .src(config.css_compiled_path)
+    .pipe(
+      autoprefixer(["last 15 versions", "> 1%", "ie 8", "ie 7"], {
+        cascade: false,
+      })
+    )
+    .pipe(gulp.dest(config.compiled_ccs_out));
 });
 
 // Задача для минификации кода стилей для сокращения скорости загрузки веб-страницы
-gulp.task("css-minify", function() {
+gulp.task("css-minify", function () {
   return gulp
     .src(config.css_compiled_path)
     .pipe(cleanCSS({ compatibility: "ie8", level: 2 }))
     .pipe(
       purgecss({
-        content: ["src/**/*.html", "src/**/*.js"]
+        content: ["src/**/*.html", "src/**/*.js"],
       })
     )
     .pipe(rename(config.css_out_min_name))
@@ -127,19 +133,19 @@ gulp.task("css-minify", function() {
 });
 
 // Задача для конвертирования скриптов в код для старых браузеров
-gulp.task("scripts-build", function() {
+gulp.task("scripts-build", function () {
   return gulp
     .src(config.js_path)
     .pipe(
       babel({
-        presets: ["@babel/env"]
+        presets: ["@babel/env"],
       })
     )
     .pipe(gulp.dest(config.compiled_js_out));
 });
 
 // Задача для соеденинения кода скриптов в один файл для уменьшения количества запросов к серверу
-gulp.task("scripts-concat", function() {
+gulp.task("scripts-concat", function () {
   return gulp
     .src([config.js_libraries_path, config.js_path])
     .pipe(concat(config.js_out_compiled_name))
@@ -147,7 +153,7 @@ gulp.task("scripts-concat", function() {
 });
 
 // Задача для минификации кода скриптов для сокращения скорости загрузки веб-страницы
-gulp.task("scripts-minify", function() {
+gulp.task("scripts-minify", function () {
   return gulp
     .src(config.js_compiled_path)
     .pipe(rename(config.js_out_min_name))
@@ -156,19 +162,19 @@ gulp.task("scripts-minify", function() {
 });
 
 // Задача по сжатию изображений для сокращения скорости загрузки веб-страницы
-gulp.task("image-min", function() {
+gulp.task("image-min", function () {
   return gulp
     .src(config.img_path)
     .pipe(
       imagemin({
-        progressive: true
+        progressive: true,
       })
     )
     .pipe(gulp.dest(config.img_out));
 });
 
 // Перемещаем другие файлы в директорию с собранным проектом
-gulp.task("move", function() {
+gulp.task("move", function () {
   return gulp.src(filesToMove, { base: "src/" }).pipe(gulp.dest("dist/"));
 });
 
@@ -187,11 +193,40 @@ gulp.task("favicons", () => {
           firefox: false,
           yandex: false,
           windows: false,
-          coast: false
-        }
+          coast: false,
+        },
       })
     )
     .pipe(gulp.dest(config.favicon_out));
+});
+
+// Задача генерации карты сайта
+gulp.task("sitemap", function () {
+  return gulp
+    .src(config.html_path, {
+      read: true,
+    })
+    .pipe(
+      sitemap({
+        // Тут нужно указать домен вашего сайта, например https://www.amazon.com/
+        siteUrl: "sample.ru",
+      })
+    )
+    .pipe(gulp.dest(config.dist));
+});
+
+// Задача генерации файла robots.txt
+gulp.task("robots", function () {
+  return gulp
+    .src("src/index.html")
+    .pipe(
+      robots({
+        useragent: "*",
+        allow: [""],
+        disallow: [""],
+      })
+    )
+    .pipe(gulp.dest(config.dist));
 });
 
 // Задача сборки готового для деплоя проекта в папку dist
@@ -203,11 +238,13 @@ gulp.task(
     "scripts-build",
     "scripts-concat",
     "scripts-minify",
-    "sass",
+    "scss",
     "css-prefix",
     "css-minify",
     "image-min",
     "move",
-    "favicons"
+    "favicons",
+    "robots",
+    "sitemap"
   )
 );
