@@ -67,7 +67,7 @@ var filesToMove = [
 
 // Стандартная задача gulp, она же - задача для разработки
 gulp.task("default", function () {
-  gulp.watch(config.scss_path, gulp.series("sass"));
+  gulp.watch(config.scss_path, gulp.series("scss"));
 });
 
 // Очистка папки с собранным проектом

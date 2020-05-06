@@ -115,10 +115,6 @@ $RECYCLE.BIN/
 *.css.map
 
 
-### Less ###
-*.css
-
-
 ### grunt ###
 # Grunt usually compiles files inside this directory
 dist/
@@ -148,3 +144,7 @@ sftp-config.json
 # Visual Studio Code - https://code.visualstudio.com/
 .settings/
 .vscode/
+
+### Other ###
+*/*/compiled/*.js
+*/css/*.css
