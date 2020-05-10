@@ -62,6 +62,7 @@ var filesToMove = [
   "src/fonts/**/*.*",
   "src/videos/**/*.*",
   "src/music/**/*.*",
+  "src/php/**/*.*",
   "src/files/**/*.*",
 ];
 

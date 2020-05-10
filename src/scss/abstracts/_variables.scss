@@ -2,15 +2,36 @@
 // В этом файле находятся все основные SASS - Переменные
 // -----------------------------------------------------------------------------
 
+/* ----------------- ЦВЕТА */
 // Основной цвет
 $palette-primary: #ffffff;
 
+/* ----------------- ОБЩЕЕ */
 // Максимальная ширина контейнера
 $container-max-width: 1180px;
 
-// Брейкпоинты для адаптива
+// Значения для послойного наложения
+$z-index-main: 1;
+$z-index-second: 2;
+$z-index-header: 50;
+$z-index-overlay: 100;
+$z-index-menu: 110;
+$z-index-modal: 120;
+
+/* ----------------- АДАПТИВ */
+// Брейпоинты разных экранов для адаптива
 $breakpoint-laptop: 1024px;
 $breakpoint-tablet: 768px;
 $breakpoint-mobile-large: 425px;
-$breakpoint-mobile-large: 375px;
-$breakpoint-mobile-large: 320px;
+$breakpoint-mobile-medium: 375px;
+$breakpoint-mobile-small: 320px;
+
+/* ----------------- ТИПОГРАФИКА */
+// Толщина шрифта
+$weight-lightest: 100;
+$weight-light: 300;
+$weight-medium: 500;
+$weight-bold: 700;
+$weight-extrabold: 900;
+
+
