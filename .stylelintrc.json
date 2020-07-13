@@ -3,18 +3,6 @@
   "plugins": ["stylelint-order"],
   "rules": {
     "indentation": 2,
-    "order/order": [
-      "custom-properties",
-      {
-        "type": "at-rule",
-        "name": "include"
-      },
-      "declarations",
-      {
-        "type": "at-rule",
-        "name": "media"
-      }
-    ],
     "order/properties-order": [
       [
         {
