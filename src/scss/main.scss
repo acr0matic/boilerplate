@@ -6,25 +6,20 @@
 @import "vendors/breakpoint";
 
 // 2. Подключение базовых функций и переменных
-@import
-  'abstracts/variables',
-  'abstracts/functions',
-  'abstracts/placeholders',
-  'abstracts/mixins';
-  
+@import "abstracts/variables";
+@import "abstracts/functions";
+@import "abstracts/placeholders";
+@import "abstracts/mixins";
+
 // 3. Подключение базовых стилей
-@import
-  'base/base',
-  'base/fonts',
-  'base/typography',
-  'base/helpers';
+@import "base/base.scss";
+@import "base/fonts.scss";
+@import "base/typography.scss";
+@import "base/helpers.scss";
 
 // 4. Подключение стилей разметки
-@import
-  'layout/header',
-  'layout/footer';
+@import "layout/header.scss";
+@import "layout/footer.scss";
 
 // 5. Подключение стилей компонентов
-@import
-  'components/button';
-
+@import "components/components.scss";

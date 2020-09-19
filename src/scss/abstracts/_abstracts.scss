@@ -1,0 +1,20 @@
+// Подключение переменных
+@import "variables/common";
+@import "variables/color";
+@import "variables/typography";
+@import "variables/z-index";
+@import "variables/breakpoint";
+
+// Подключение плейсходеров
+@import "placeholders/placeholders";
+
+// Подключение функций
+@import "functions/functions.scss";
+
+// Подключение миксинов
+@import "mixins/font";
+@import "mixins/background";
+@import "mixins/flex";
+
+
+
