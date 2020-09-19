@@ -10,8 +10,8 @@
     font-style: $style;
     font-display: swap;
 
-    src: url("#{$file-path}") format("woff2"),
-      url("#{$file-path}") format("woff");
+    src: url("#{$file-path}.woff2") format("woff2"),
+      url("#{$file-path}.woff") format("woff");
   }
 }
 
