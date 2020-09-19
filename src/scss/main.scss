@@ -1,17 +1,14 @@
 @charset 'UTF-8';
 
 // 1. Импорт библиотек
-@import "vendors/normalize";
-@import "vendors/family";
-@import "vendors/breakpoint";
+@import "vendors/normalize.scss";
+@import "vendors/family.scss";
+@import "vendors/breakpoint.scss";
 
 // 2. Подключение базовых функций и переменных
-@import "abstracts/variables";
-@import "abstracts/functions";
-@import "abstracts/placeholders";
-@import "abstracts/mixins";
+@import "abstracts/abstracts.scss";
 
-// 3. Подключение базовых стилей
+// 3. Подключение основных стилей
 @import "base/base.scss";
 @import "base/fonts.scss";
 @import "base/typography.scss";
