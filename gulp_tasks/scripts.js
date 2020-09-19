@@ -26,7 +26,7 @@ task('scripts', () => src(paths.scripts.src)
     title: 'Converted:',
     showCount: false,
   }))
-  .pipe(addsrc(paths.scripts.libraries))
+  .pipe(addsrc.prepend(paths.scripts.libraries))
   .pipe(concat(paths.scripts.out))
   .pipe(debug({
     title: 'Concatenated:',
