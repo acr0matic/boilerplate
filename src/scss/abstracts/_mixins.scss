@@ -2,7 +2,6 @@
 // В этом файле находятся все SASS - Миксины
 // -----------------------------------------------------------------------------
 
-
 // Миксин для подключения шрифтов
 @mixin font-face($font-family, $file-path, $weight: normal, $style: normal) {
   @font-face {
@@ -13,5 +12,20 @@
 
     src: url("#{$file-path}") format("woff2"),
       url("#{$file-path}") format("woff");
+  }
+}
+
+@mixin flex($align: center, $justify: space-between) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+@mixin background($imgpath, $size: cover, $position: 0 0, $repeat: no-repeat) {
+  background: {
+    image: url($imgpath);
+    position: $position;
+    size: $size;
+    repeat: $repeat;
   }
 }
