@@ -1,3 +1,8 @@
 // -----------------------------------------------------------------------------
 // В этом файле подключаются все шрифты через font-face, если таковые есть
 // -----------------------------------------------------------------------------
+
+@include font-face('Roboto', '../fonts/roboto/Roboto-Light', 300);
+@include font-face('Roboto', '../fonts/roboto/Roboto-Regular', 400);
+@include font-face('Roboto', '../fonts/roboto/Roboto-Medium', 500);
+@include font-face('Roboto', '../fonts/roboto/Roboto-Bold', 700);
