@@ -5,18 +5,21 @@
 @import "vendors/family.scss";
 @import "vendors/breakpoint.scss";
 
-// 2. Подключение базовых функций и переменных
+// 2. Импорт библиотек
+@import "vendors-extended/vendor-extend";
+
+// 3. Подключение базовых функций и переменных
 @import "abstracts/abstracts.scss";
 
-// 3. Подключение основных стилей
+// 4. Подключение основных стилей
 @import "base/base.scss";
 @import "base/fonts.scss";
 @import "base/typography.scss";
 @import "base/helpers.scss";
 
-// 4. Подключение стилей разметки
-@import "layout/header.scss";
-@import "layout/footer.scss";
-
 // 5. Подключение стилей компонентов
 @import "components/components.scss";
+
+// 6. Подключение стилей разметки
+@import "layout/layout.scss";
+
