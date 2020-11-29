@@ -360,12 +360,6 @@
         "message": "Перед запятой не должно быть переноса строки"
       }
     ],
-    "selector-list-comma-space-after": [
-      "always-single-line",
-      {
-        "message": "После запятой должен быть пробел"
-      }
-    ],
     "selector-list-comma-space-before": [
       "never",
       {
@@ -385,13 +379,6 @@
         "message": "Единицы измерения не указываются, если значение равно нулю"
       }
     ],
-
-    "function-comma-space-after": [
-      "always",
-      {
-        "message": "После запятой необходим пробел"
-      }
-    ],
     "function-comma-space-before": [
       "never",
       {
@@ -402,18 +389,6 @@
       "never-multi-line",
       {
         "message": "Перед переносом запятой быть не должно"
-      }
-    ],
-    "function-comma-newline-after": [
-      "never-multi-line",
-      {
-        "message": "После переноса запятой быть не должно"
-      }
-    ],
-    "function-parentheses-newline-inside": [
-      "never-multi-line",
-      {
-        "message": "После переноса скобки быть не должно"
       }
     ],
     "function-max-empty-lines": [
