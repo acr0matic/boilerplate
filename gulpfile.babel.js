@@ -29,6 +29,7 @@ const paths = {
   scripts: {
     src: './src/scripts/*.js',
     libraries: './src/scripts/libraries/*.js',
+    polyfills: './src/scripts/polyfills/*.js',
     dist: './dist/js/',
     watch: './src/scripts/**/*.js',
     out: 'script.js',

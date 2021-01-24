@@ -22,6 +22,7 @@ task('scripts', () => src(paths.scripts.src)
     title: 'Converted:',
     showCount: false,
   }))
+  .pipe(addsrc.prepend(paths.scripts.polyfills))
   .pipe(addsrc.prepend(paths.scripts.libraries))
   .pipe(concat(paths.scripts.out))
   .pipe(debug({
