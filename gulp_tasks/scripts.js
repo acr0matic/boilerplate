@@ -17,11 +17,7 @@ import paths from '../gulpfile.babel';
 
 task('scripts', () => src(paths.scripts.src)
   .pipe(plumber())
-  .pipe(
-    babel({
-      presets: ['@babel/env'],
-    }),
-  )
+  .pipe(babel())
   .pipe(debug({
     title: 'Converted:',
     showCount: false,

@@ -154,13 +154,6 @@
         "message": "Не следует ставить пробел перед двоеточием"
       }
     ],
-    "declaration-no-important": [
-      true,
-      {
-        "severity": "warning",
-        "message": "Применяйте !important с осторожностью"
-      }
-    ],
     "declaration-block-no-duplicate-properties": [
       true,
       {
