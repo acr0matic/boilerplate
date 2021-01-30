@@ -1,13 +1,14 @@
 // -----------------------------------------------------------------------------
 // Соединяем компоненты в один файл
 // -----------------------------------------------------------------------------
-@import "button/main";
-@import "form/main";
-@import "modal/main";
 @import "accordion/main";
-@import "table/main";
+@import "button/main";
+@import "dropdown/main";
+@import "form/main";
 @import "input/main";
-@import "slider/main";
-@import "preloader/main";
-@import "tooltip/main";
 @import "list/main";
+@import "modal/main";
+@import "preloader/main";
+@import "slider/main";
+@import "table/main";
+@import "tooltip/main";
