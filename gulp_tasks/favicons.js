@@ -21,6 +21,7 @@ task('favicons', () => src(paths.favicons.src)
         windows: false,
         coast: false,
       },
+      background: 'transparent',
     }),
   )
   .pipe(debug({
