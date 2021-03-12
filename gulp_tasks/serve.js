@@ -1,7 +1,7 @@
-import gulp from 'gulp';
-import browserSync from 'browser-sync';
+const gulp = require('gulp');
+const browserSync = require('browser-sync');
 
-import paths from '../gulpfile.babel';
+const paths = require('../gulpfile');
 
 const { reload } = browserSync;
 

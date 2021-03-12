@@ -1,11 +1,11 @@
-import { task, src, dest } from 'gulp';
+const { task, src, dest } = require('gulp');
 
-import htmlReplace from 'gulp-html-replace';
-import htmlMin from 'gulp-htmlmin';
-import debug from 'gulp-debug';
-import browsersync from 'browser-sync';
+const htmlReplace = require('gulp-html-replace');
+const htmlMin = require('gulp-htmlmin');
+const debug = require('gulp-debug');
+const browsersync = require('browser-sync');
 
-import paths from '../gulpfile.babel';
+const paths = require('../gulpfile');
 
 task('html', () => src(paths.html.src)
   .pipe(
@@ -22,7 +22,7 @@ task('html', () => src(paths.html.src)
     htmlMin({
       sortAttributes: true,
       sortClassName: true,
-      collapseWhitespace: true,
+      collapseWhitespace: false,
     }),
   )
   .pipe(debug({

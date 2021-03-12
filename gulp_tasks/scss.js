@@ -1,11 +1,11 @@
-import { task, src, dest } from 'gulp';
-import { init, write } from 'gulp-sourcemaps';
-import sass from 'gulp-sass';
-import rename from 'gulp-rename';
-import { stream } from 'browser-sync';
-import debug from 'gulp-debug';
+const { task, src, dest } = require('gulp');
+const { init, write } = require('gulp-sourcemaps');
+const sass = require('gulp-sass');
+const rename = require('gulp-rename');
+const { stream } = require('browser-sync');
+const debug = require('gulp-debug');
 
-import paths from '../gulpfile.babel';
+const paths = require('../gulpfile');
 
 // Задача компиляции SCSS кода в CSS
 task('scss', () => src(paths.styles.src)

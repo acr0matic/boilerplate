@@ -1,13 +1,11 @@
-import { task, src, dest } from 'gulp';
-import plumber, { stop } from 'gulp-plumber';
-import debug from 'gulp-debug';
-import favicons from 'gulp-favicons';
+const { task, src, dest } = require('gulp');
+const debug = require('gulp-debug');
+const favicons = require('gulp-favicons');
 
-import paths from '../gulpfile.babel';
+const paths = require('../gulpfile');
 
 // Задача по созданию иконок вкладки браузера для сайта
 task('favicons', () => src(paths.favicons.src)
-  .pipe(plumber())
   .pipe(
     favicons({
       icons: {
@@ -27,5 +25,4 @@ task('favicons', () => src(paths.favicons.src)
   .pipe(debug({
     title: 'Favicon Created:',
   }))
-  .pipe(stop())
   .pipe(dest(paths.favicons.dist)));

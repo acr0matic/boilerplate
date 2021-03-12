@@ -1,5 +1,5 @@
-import gulp from 'gulp';
+const gulp = require('gulp');
 
-import paths from '../gulpfile.babel';
+const paths = require('../gulpfile');
 
 gulp.task('move', () => gulp.src(paths.files.src).pipe(gulp.dest(paths.files.dist)));

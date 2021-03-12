@@ -1,13 +1,13 @@
-import { task, src, dest } from 'gulp';
-import babel from 'gulp-babel';
-import plumber from 'gulp-plumber';
-import concat from 'gulp-concat';
-import addsrc from 'gulp-add-src';
-import rename from 'gulp-rename';
-import uglify from 'gulp-uglify-es';
-import debug from 'gulp-debug';
+const { task, src, dest } = require('gulp');
 
-import paths from '../gulpfile.babel';
+const babel = require('gulp-babel');
+const concat = require('gulp-concat');
+const addsrc = require('gulp-add-src');
+const rename = require('gulp-rename');
+const uglify = require('gulp-uglify');
+const debug = require('gulp-debug');
+
+const paths = require('../gulpfile');
 
 /*
 - Задача конвертации синтаксиса ES2016+ в старый формат
@@ -16,7 +16,6 @@ import paths from '../gulpfile.babel';
 */
 
 task('scripts', () => src(paths.scripts.src)
-  .pipe(plumber())
   .pipe(babel())
   .pipe(debug({
     title: 'Converted:',

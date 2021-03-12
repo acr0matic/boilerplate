@@ -1,15 +1,13 @@
-import { task, src, dest } from 'gulp';
-import rename from 'gulp-rename';
-import cleanCSS from 'gulp-clean-css';
-import purgecss from 'gulp-purgecss';
-import shorthand from 'gulp-shorthand';
-import debug from 'gulp-debug';
+const { task, src, dest } = require('gulp');
+const rename = require('gulp-rename');
+const cleanCSS = require('gulp-clean-css');
+const purgecss = require('gulp-purgecss');
+const debug = require('gulp-debug');
 
-import paths from '../gulpfile.babel';
+const paths = require('../gulpfile');
 
 // Задача для минификации кода стилей для сокращения скорости загрузки веб-страницы
 task('minify_css', () => src(paths.styles.temp + paths.styles.out)
-  .pipe(shorthand())
   .pipe(debug({
     title: 'Compressed:',
     showCount: false,

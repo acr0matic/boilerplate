@@ -1,6 +1,6 @@
-import { task } from 'gulp';
-import del from 'del';
+const { task } = require('gulp');
+const del = require('del');
 
-import paths from '../gulpfile.babel';
+const paths = require('../gulpfile');
 
 task('clean', () => del([paths.dist]));

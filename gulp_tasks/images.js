@@ -1,21 +1,15 @@
-import gulp from 'gulp';
-import imagemin from 'gulp-imagemin';
-import imageminPngquant from 'imagemin-pngquant';
-import imageminZopfli from 'imagemin-zopfli';
-import imageminMozjpeg from 'imagemin-mozjpeg';
-import imageminGiflossy from 'imagemin-giflossy';
-import browsersync from 'browser-sync';
-import debug from 'gulp-debug';
+const gulp = require('gulp');
+const imagemin = require('gulp-imagemin');
+const imageminPngquant = require('imagemin-pngquant');
+const imageminZopfli = require('imagemin-zopfli');
+const imageminMozjpeg = require('imagemin-mozjpeg');
+const browsersync = require('browser-sync');
+const debug = require('gulp-debug');
 
-import paths from '../gulpfile.babel';
+const paths = require('../gulpfile');
 
 gulp.task('images', () => gulp.src(paths.images.src)
   .pipe(imagemin([
-    imageminGiflossy({
-      optimizationLevel: 3,
-      optimize: 3,
-      lossy: 2,
-    }),
     imageminPngquant({
       speed: 5,
       quality: [0.6, 0.8],
@@ -25,7 +19,7 @@ gulp.task('images', () => gulp.src(paths.images.src)
     }),
     imageminMozjpeg({
       progressive: true,
-      quality: 90,
+      quality: 75,
     }),
     imagemin.svgo({
       plugins: [

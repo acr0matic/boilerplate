@@ -1,7 +1,6 @@
-import gulp from 'gulp';
+const { task, series } = require('gulp');
 
 const requireDir = require('require-dir');
-
 const paths = {
   src: './src/',
   dist: './dist/',
@@ -81,6 +80,15 @@ module.exports = paths;
 
 requireDir('./gulp_tasks/');
 
-gulp.task('build',
-  gulp.series('clean',
-    gulp.series(['html', 'scss', 'autoprefix', 'minify_css', 'scripts', 'images', 'favicons', 'move'])));
+task('build', series('clean', series(
+  [
+    'scss',
+    'autoprefix',
+    'minify_css',
+    'scripts',
+    'html',
+    'images',
+    'favicons',
+    'move',
+  ],
+)));
