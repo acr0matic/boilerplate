@@ -1,20 +1,21 @@
 @charset 'UTF-8';
 
 // 0. Подключение первичных стилей
-@import "vendors/normalize.scss";
-@import "vendors/breakpoint.scss";
+@import "vendors/normalize";
+@import "vendors/breakpoint";
 
 // 1. Подключение базовых функций и переменных
-@import "abstracts/abstracts.scss";
+@import "abstracts/abstracts";
 
 // 2. Подключение основных стилей
-@import "base/base.scss";
-@import "base/fonts.scss";
-@import "base/typography.scss";
-@import "base/helpers.scss";
+@import "base/base";
+@import "base/fonts";
+@import "base/typography";
+@import "base/helpers";
 
 // 3. Импорт библиотек
-@import "vendors/family.scss";
+@import "vendors/family";
+@import "vendors/hamburgers";
 @import "vendors/bootstrap-grid";
 @import "vendors/bootstrap-utilities";
 
@@ -22,8 +23,8 @@
 @import "vendors-extended/vendor-extend";
 
 // 5. Подключение стилей компонентов
-@import "components/components.scss";
+@import "components/components";
 
 // 6. Подключение стилей разметки
-@import "layout/layout.scss";
+@import "layout/layout";
 
