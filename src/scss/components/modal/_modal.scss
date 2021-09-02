@@ -1,87 +1,92 @@
-.modal__overlay {
-  position: fixed;
-  z-index: $z-index-modal;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+.modal {
+  &__overlay {
+    position: fixed;
+    z-index: $z-index-modal;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  background: rgba(0, 0, 0, 0.6);
-}
-
-.modal__container {
-  position: relative;
-}
-
-.modal__header {
-}
-
-.modal__title {
-}
-
-.modal__close {
-  position: absolute;
-  z-index: 3;
-  top: 10px;
-  right: 5px;
-
-  background-color: transparent;
-  border: none;
-  outline: none;
-
-  cursor: pointer;
-
-  transition: opacity 0.15s ease;
-
-  &:hover {
-    opacity: 0.5;
+    background: rgba(0, 0, 0, 0.6);
   }
 
-  &:before {
-    content: url("../img/icons/control/modal__close.svg");
+  &__container {
+    position: relative;
   }
-}
 
-.modal__content {
-}
+  &__header {
+  }
 
-@keyframes mmfadeIn {
-  from {
-    opacity: 0;
+  &__title {
   }
-  to {
-    opacity: 1;
-  }
-}
 
-@keyframes mmfadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
+  &__close {
+    position: absolute;
+    z-index: 3;
+    top: 10px;
+    right: 5px;
 
-@keyframes mmslideIn {
-  from {
-    transform: translateY(15%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
+    background-color: transparent;
+    border: none;
+    outline: none;
 
-@keyframes mmslideOut {
-  from {
-    transform: translateY(0);
+    cursor: pointer;
+
+    transition: opacity 0.15s ease;
+
+    @media (hover: hover) {
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+
+    &:before {
+      content: url("../img/icons/control/modal__close.svg");
+    }
   }
-  to {
-    transform: translateY(-10%);
+
+  &__content {
+
+  }
+
+  @keyframes mmfadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes mmfadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes mmslideIn {
+    from {
+      transform: translateY(15%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes mmslideOut {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-10%);
+    }
   }
 }
 

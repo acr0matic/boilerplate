@@ -12,8 +12,6 @@ const paths = {
     ],
     dist: './dist/',
     watch: './src/**/*.{html,php}',
-    css: 'css/style.min.css',
-    js: 'js/script.min.js',
   },
 
   styles: {

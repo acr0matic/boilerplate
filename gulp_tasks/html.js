@@ -1,6 +1,7 @@
 const { task, src, dest } = require('gulp');
 
-const htmlReplace = require('gulp-html-replace');
+const gulpif = require('gulp-if');
+const useref = require('gulp-useref');
 const htmlMin = require('gulp-htmlmin');
 const debug = require('gulp-debug');
 const browsersync = require('browser-sync');
@@ -8,22 +9,16 @@ const browsersync = require('browser-sync');
 const paths = require('../gulpfile');
 
 task('html', () => src(paths.html.src)
-  .pipe(
-    htmlReplace({
-      css: paths.html.css,
-      js: paths.html.js,
-    }),
-  )
+  .pipe(useref())
   .pipe(debug({
     title: 'Replaced:',
     showCount: false,
   }))
-  .pipe(
-    htmlMin({
-      sortAttributes: true,
-      sortClassName: true,
-      collapseWhitespace: false,
-    }),
+  .pipe(gulpif('*.{html,php}', htmlMin({
+    sortAttributes: true,
+    sortClassName: true,
+    collapseWhitespace: false, // Отключить, если требуется посадка верстки на CMS
+  }))
   )
   .pipe(debug({
     title: 'Minified:',
