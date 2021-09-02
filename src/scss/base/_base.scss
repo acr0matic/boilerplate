@@ -11,6 +11,7 @@ html {
 }
 
 body {
+  position: relative;
   overflow-x: hidden;
 }
 
@@ -62,31 +63,8 @@ a {
   color: $text-black;
 }
 
-ol,
-ul {
-  margin: 0;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
 ol {
   padding-left: 20px;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-  margin: 0;
-  padding: 0;
-}
-
-p {
-  margin: 0;
 }
 
 img {

@@ -5,6 +5,7 @@ const concat = require('gulp-concat');
 const addsrc = require('gulp-add-src');
 const rename = require('gulp-rename');
 const uglify = require('gulp-uglify');
+
 const debug = require('gulp-debug');
 
 const paths = require('../gulpfile');
