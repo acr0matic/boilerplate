@@ -84,7 +84,7 @@ task('build', series('clean', series(
     'autoprefix',
     'minify_css',
     'scripts',
-    'html',
+    'layout',
     'images',
     'favicons',
     'move',
