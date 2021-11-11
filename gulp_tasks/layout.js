@@ -8,7 +8,7 @@ const browsersync = require('browser-sync');
 
 const paths = require('../gulpfile');
 
-task('html', () => src(paths.html.src)
+task('layout', () => src(paths.html.src)
   .pipe(useref())
   .pipe(debug({
     title: 'Replaced:',

@@ -6,12 +6,12 @@
   "plugins": [
     "lodash",
     "sonarjs",
-    "promise",
+    "promise"
   ],
   "extends": [
-    "plugin:lodash/recommended",
+    "plugin:lodash/canonical",
     "plugin:sonarjs/recommended",
-    "plugin:promise/recommended",
+    "plugin:promise/recommended"
   ],
   "globals": {
     "Atomics": "readonly",
