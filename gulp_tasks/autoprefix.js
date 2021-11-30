@@ -1,6 +1,5 @@
 const { task, src, dest } = require('gulp');
 const autoprefixer = require('gulp-autoprefixer');
-const debug = require('gulp-debug');
 
 const paths = require('../gulpfile');
 
@@ -12,8 +11,4 @@ task('autoprefix', () => src(paths.styles.temp + paths.styles.out)
       grid: 'autoplace'
     }),
   )
-  .pipe(debug({
-    title: 'Prefixes set:',
-    showCount: false,
-  }))
   .pipe(dest(paths.styles.temp)));

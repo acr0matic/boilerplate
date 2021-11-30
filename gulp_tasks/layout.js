@@ -1,32 +1,18 @@
 const { task, src, dest } = require('gulp');
 
-const gulpif = require('gulp-if');
 const useref = require('gulp-useref');
 const htmlMin = require('gulp-htmlmin');
-const debug = require('gulp-debug');
 const browsersync = require('browser-sync');
 
 const paths = require('../gulpfile');
 
 task('layout', () => src(paths.html.src)
-  .pipe(useref())
-  .pipe(debug({
-    title: 'Replaced:',
-    showCount: false,
-  }))
-  .pipe(gulpif('*.{html,php}', htmlMin({
+  .pipe(useref({ searchPath:[paths.styles.src, paths.scripts.src]}))
+  .pipe(htmlMin({
     sortAttributes: true,
     sortClassName: true,
-    collapseWhitespace: false, // Отключить, если требуется посадка верстки на CMS
-  }))
-  )
-  .pipe(debug({
-    title: 'Minified:',
-    showCount: false,
+    removeComments: true, // Отключить, если требуется посадка верстки на CMS
+    collapseWhitespace: true, // Отключить, если требуется посадка верстки на CMS
   }))
   .pipe(dest(paths.html.dist))
-  .pipe(debug({
-    title: 'Moved:',
-    showCount: false,
-  }))
   .pipe(browsersync.stream()));

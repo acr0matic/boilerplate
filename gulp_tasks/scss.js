@@ -11,23 +11,7 @@ const paths = require('../gulpfile');
 task('scss', () => src(paths.styles.src)
   .pipe(sourcemaps.init())
   .pipe(sass())
-  .pipe(debug({
-    title: 'Compiled:',
-    showCount: false,
-  }))
   .pipe(rename(paths.styles.out))
-  .pipe(debug({
-    title: 'Renamed:',
-    showCount: false,
-  }))
   .pipe(sourcemaps.write('.'))
-  .pipe(debug({
-    title: 'Sourcemaps:',
-    showCount: true,
-  }))
   .pipe(dest(paths.styles.temp))
-  .pipe(debug({
-    title: 'Moved to destination:',
-    showCount: true,
-  }))
   .pipe(stream({ match: '**/*.css' })));

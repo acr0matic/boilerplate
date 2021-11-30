@@ -35,7 +35,4 @@ gulp.task('images', () => gulp.src(paths.images.src)
     }),
   ]))
   .pipe(gulp.dest(paths.images.dist))
-  .pipe(debug({
-    title: 'Compressed',
-  }))
   .on('end', browsersync.reload));

@@ -6,8 +6,6 @@ const addsrc = require('gulp-add-src');
 const rename = require('gulp-rename');
 const uglify = require('gulp-uglify');
 
-const debug = require('gulp-debug');
-
 const paths = require('../gulpfile');
 
 /*
@@ -18,25 +16,9 @@ const paths = require('../gulpfile');
 
 task('scripts', () => src(paths.scripts.src)
   .pipe(babel())
-  .pipe(debug({
-    title: 'Converted:',
-    showCount: false,
-  }))
   .pipe(addsrc.prepend(paths.scripts.polyfills))
   .pipe(addsrc.prepend(paths.scripts.libraries))
   .pipe(concat(paths.scripts.out))
-  .pipe(debug({
-    title: 'Concatenated:',
-    showCount: false,
-  }))
   .pipe(uglify())
-  .pipe(debug({
-    title: 'Minified:',
-    showCount: false,
-  }))
   .pipe(rename(paths.scripts.minify))
-  .pipe(debug({
-    title: 'Renamed:',
-    showCount: false,
-  }))
   .pipe(dest(paths.scripts.dist)));

@@ -24,5 +24,6 @@ task('favicons', () => src(paths.favicons.src)
   )
   .pipe(debug({
     title: 'Favicon Created:',
+    showCount: false,
   }))
   .pipe(dest(paths.favicons.dist)));
