@@ -3,12 +3,14 @@
 // -----------------------------------------------------------------------------
 
 // Глобальные фрагменты сайта, такие как: шапка, подвал
+@import "common/page";
 @import "common/header";
 @import "common/nav";
+@import "common/mobile-menu";
 @import "common/footer";
 
 // Общие фрагменты блоков, которые встречаются на нескольких страницах
 @import "block/main";
 
 // Фрагменты главной страницы
-@import "pages/main/section.scss";
+@import "pages/main/section";

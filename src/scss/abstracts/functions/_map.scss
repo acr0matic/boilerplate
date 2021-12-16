@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+@function map($map, $key) {
+  @if map-has-key($map, $key) {
+    @return map-get($map,$key);
+  }
+
+  @else {
+    @warn "Value not found. "
+        + "List of avaliable: #{$map}";
+  }
+
+  @return inherit;
+}
