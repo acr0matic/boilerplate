@@ -1,3 +1,5 @@
+$transition: $transition--medium;
+
 .modal {
   &__overlay {
     position: fixed;
@@ -11,7 +13,7 @@
     align-items: center;
     justify-content: center;
 
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(#000000, 60%);
   }
 
   &__container {
@@ -30,9 +32,9 @@
     top: 10px;
     right: 5px;
 
-    background-color: transparent;
     border: none;
     outline: none;
+    background-color: transparent;
 
     cursor: pointer;
 
@@ -44,49 +46,12 @@
       }
     }
 
-    &:before {
+    &::before {
       content: url("../img/icons/control/modal__close.svg");
     }
   }
 
   &__content {
-
-  }
-
-  @keyframes mmfadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes mmfadeOut {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-  }
-
-  @keyframes mmslideIn {
-    from {
-      transform: translateY(15%);
-    }
-    to {
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes mmslideOut {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(-10%);
-    }
   }
 }
 
@@ -98,23 +63,23 @@
   display: block;
 }
 
-.micromodal-slide[aria-hidden="false"] .modal__overlay {
-  animation: mmfadeIn 0.3s cubic-bezier(0, 0, 0.2, 1);
-}
-
-.micromodal-slide[aria-hidden="false"] .modal__container {
-  animation: mmslideIn 0.3s cubic-bezier(0, 0, 0.2, 1);
-}
-
-.micromodal-slide[aria-hidden="true"] .modal__overlay {
-  animation: mmfadeOut 0.3s cubic-bezier(0, 0, 0.2, 1);
-}
-
-.micromodal-slide[aria-hidden="true"] .modal__container {
-  animation: mmslideOut 0.3s cubic-bezier(0, 0, 0.2, 1);
-}
-
 .micromodal-slide .modal__container,
 .micromodal-slide .modal__overlay {
   will-change: transform;
+}
+
+.micromodal-slide[aria-hidden="false"] .modal__overlay {
+  animation: fade-in $transition cubic-bezier(0, 0, 0.2, 1);
+}
+
+.micromodal-slide[aria-hidden="false"] .modal__container {
+  animation: slide-in $transition cubic-bezier(0, 0, 0.2, 1);
+}
+
+.micromodal-slide[aria-hidden="true"] .modal__overlay {
+  animation: fade-out $transition cubic-bezier(0, 0, 0.2, 1);
+}
+
+.micromodal-slide[aria-hidden="true"] .modal__container {
+  animation: slide-out $transition cubic-bezier(0, 0, 0.2, 1);
 }

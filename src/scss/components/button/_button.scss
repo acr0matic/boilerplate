@@ -1,0 +1,19 @@
+$border-radius: 5px !default;
+$transition: $transition--quick;
+
+.button {
+  border: none;
+  border-radius: $border-radius;
+  background-color: transparent;
+
+  outline: none;
+  white-space: nowrap;
+  cursor: pointer;
+
+  transition: $transition ease;
+
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}

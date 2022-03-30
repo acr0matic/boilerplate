@@ -12,10 +12,32 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
-ul {
+ol,
+ul,
+menu {
   list-style: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+textarea {
+  white-space: revert;
+}
+
+::placeholder {
+  color: unset;
+}
+
+:where([hidden]) {
+  display: none;
 }

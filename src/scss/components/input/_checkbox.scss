@@ -2,22 +2,6 @@
   display: inline-flex;
   align-items: center;
 
-  &:hover &__mark {
-    border-color: #da2e2b;
-  }
-
-  input {
-    display: none;
-
-    &:checked ~ .checkbox__mark {
-      border-color: #da2e2b;
-    }
-
-    &:checked ~ .checkbox__mark::after {
-      opacity: 1;
-    }
-  }
-
   &__mark {
     position: relative;
     display: block;
@@ -32,8 +16,8 @@
 
     border: 2px solid #5e5e5e;
 
-    transition: all 0.15s ease;
     cursor: pointer;
+    transition: all 0.15s ease;
 
     &::after {
       content: "";
@@ -45,12 +29,28 @@
       width: 70%;
       height: 70%;
 
+      transform: translate(-50%, -50%);
       background: #da2e2b;
 
       opacity: 0;
 
-      transform: translate(-50%, -50%);
       transition: opacity 0.15s ease;
+    }
+  }
+
+  &:hover &__mark {
+    border-color: #da2e2b;
+  }
+
+  input {
+    display: none;
+
+    &:checked ~ .checkbox__mark {
+      border-color: #da2e2b;
+    }
+
+    &:checked ~ .checkbox__mark::after {
+      opacity: 1;
     }
   }
 

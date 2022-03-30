@@ -1,11 +1,13 @@
 // Анимации смены стилей
-$transition__component: 0.2s ease;
+$transition--quick: 0.2s ease;
+$transition--medium: 0.5s ease;
+$transition--slow: 1s ease;
 
 // Сглаживание углов
 $border-radius--primary: 5px;
 
 // Тени
-$shadow-primary: 0 2px 10px rgba(0, 0, 0, 0.1);
+$shadow--primary: 0 2px 10px rgba(#000000, 10%);
 
 // Бордер
-$border-primary: 1px solid #222222;
+$border--primary: 1px solid #222222;
