@@ -1,5 +1,4 @@
 // Подключение переменных
-@import "variables/misc";
 @import "variables/color";
 @import "variables/typography";
 @import "variables/z-index";
@@ -9,7 +8,7 @@
 @import "placeholders/placeholders";
 
 // Подключение функций
-@import "functions/functions.scss";
+@import "functions/functions";
 
 // Подключение миксинов
 @import "mixins/font";

@@ -1,4 +1,4 @@
-$transition: $transition--medium;
+$transition-time: 0.2s;
 
 .modal {
   &__overlay {
@@ -13,7 +13,7 @@ $transition: $transition--medium;
     align-items: center;
     justify-content: center;
 
-    background: rgba(#000000, 60%);
+    background: rgba(#000000, 0.7);
   }
 
   &__container {
@@ -69,17 +69,17 @@ $transition: $transition--medium;
 }
 
 .micromodal-slide[aria-hidden="false"] .modal__overlay {
-  animation: fade-in $transition cubic-bezier(0, 0, 0.2, 1);
+  animation: fade-in $transition-time cubic-bezier(0, 0, 0.2, 1);
 }
 
 .micromodal-slide[aria-hidden="false"] .modal__container {
-  animation: slide-in $transition cubic-bezier(0, 0, 0.2, 1);
+  animation: slide-in $transition-time cubic-bezier(0, 0, 0.2, 1);
 }
 
 .micromodal-slide[aria-hidden="true"] .modal__overlay {
-  animation: fade-out $transition cubic-bezier(0, 0, 0.2, 1);
+  animation: fade-out $transition-time cubic-bezier(0, 0, 0.2, 1);
 }
 
 .micromodal-slide[aria-hidden="true"] .modal__container {
-  animation: slide-out $transition cubic-bezier(0, 0, 0.2, 1);
+  animation: slide-out $transition-time cubic-bezier(0, 0, 0.2, 1);
 }

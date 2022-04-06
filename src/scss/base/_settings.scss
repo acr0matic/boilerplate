@@ -2,4 +2,13 @@
 // В этом файле прописываются настройки для элементов верстки
 // -----------------------------------------------------------------------------
 
+// Общие параметры
 $header-height: 80px;
+
+// Эффекты
+$transition: 0.2s !default;
+
+$border-radius: 5px !default;
+$border-radius--button: 5px !default;
+
+$shadow: 0 2px 10px rgba(#000000, 0.1) !default;

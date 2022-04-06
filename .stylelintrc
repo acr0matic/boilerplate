@@ -79,7 +79,6 @@
 				"overflow-scrolling",
 				"clip",
 
-				//
 				"box-sizing",
 				"width",
 				"min-width",
@@ -145,7 +144,6 @@
 				"outline-color",
 				"outline-offset",
 
-				//
 				"background",
 				"background-color",
 				"background-image",
@@ -168,7 +166,6 @@
 				"list-style-type",
 				"list-style-image",
 
-				//
 				"font",
 				"font-weight",
 				"font-style",
@@ -209,7 +206,6 @@
 				"hyphens",
 				"interpolation-mode",
 
-				//
 				"opacity",
 				"visibility",
 				"filter",
@@ -218,7 +214,6 @@
 				"pointer-events",
 				"user-select",
 
-				//
 				"unicode-bidi",
 				"direction",
 				"columns",
@@ -247,14 +242,13 @@
 				"fill",
 				"stroke",
 
-				//
+				"transform",
+				"transform-origin",
 				"transition",
 				"transition-delay",
 				"transition-timing-function",
 				"transition-duration",
 				"transition-property",
-				"transform",
-				"transform-origin",
 				"animation",
 				"animation-name",
 				"animation-duration",
@@ -276,6 +270,7 @@
 
     "indentation": 2,
     "selector-class-pattern": "^[a-zA-Z0-9_-]+$",
+    "alpha-value-notation": "number",
     "no-missing-end-of-source-newline": null,
     "block-no-empty": null,
     "declaration-empty-line-before": [

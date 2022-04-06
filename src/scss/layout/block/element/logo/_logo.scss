@@ -1,3 +1,12 @@
 .logo {
+  transition: $transition ease;
 
+  @media (hover: hover) {
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+  &--header {
+  }
 }
