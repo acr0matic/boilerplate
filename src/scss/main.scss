@@ -3,19 +3,19 @@
 // 0. Подключение первичных стилей
 @import "base/normalize";
 
-// 1. Подключение базовых функций и переменных
+// 1. Импорт библиотек
+@import "vendors/main";
+
+// 2. Подключение базовых функций и переменных
 @import "abstracts/abstracts";
 
-// 2. Подключение основных стилей
+// 3. Подключение основных стилей
 @import "base/settings";
 @import "base/reset";
 @import "base/base";
 @import "base/fonts";
 @import "base/typography";
 @import "base/helpers";
-
-// 3. Импорт библиотек
-@import "vendors/main";
 
 // 4. Импорт надстроек библиотек
 @import "vendors-extended/vendor-extend";
