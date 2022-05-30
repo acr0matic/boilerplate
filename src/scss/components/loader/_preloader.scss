@@ -1,2 +1,16 @@
 .preloader {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+
+  width: 48px;
+  transform: translate(-50%, -50%);
+
+  transition: $transition ease;
+
+  &--hide {
+    opacity: 0;
+    visibility: hidden;
+  }
 }

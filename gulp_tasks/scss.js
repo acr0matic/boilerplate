@@ -1,6 +1,6 @@
 const { task, src, dest } = require('gulp');
 const sourcemaps = require('gulp-sourcemaps');
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
 const rename = require('gulp-rename');
 const { stream } = require('browser-sync');
 const debug = require('gulp-debug');
@@ -10,7 +10,7 @@ const paths = require('../gulpfile');
 // Задача компиляции SCSS кода в CSS
 task('scss', () => src(paths.styles.src)
   .pipe(sourcemaps.init())
-  .pipe(sass())
+  .pipe(sass.sync())
   .pipe(rename(paths.styles.out))
   .pipe(sourcemaps.write('.'))
   .pipe(dest(paths.styles.temp))

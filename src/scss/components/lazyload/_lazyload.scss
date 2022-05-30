@@ -1,11 +1,27 @@
 .lazy {
-  transition: $transition ease;
-}
+  position: relative;
 
-.loading {
-  opacity: 0;
+  &__item {
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition: $transition ease;
+
+    &--blur {
+      opacity: 1;
+      visibility: visible;
+
+      filter: blur(10px);
+    }
+  }
 }
 
 .loaded {
-  visibility: visible !important;
+  opacity: 1;
+  visibility: visible;
+
+  filter: none;
+  pointer-events: initial;
 }
