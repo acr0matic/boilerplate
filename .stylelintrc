@@ -275,6 +275,8 @@
     "block-no-empty": null,
     "no-descending-specificity" : null,
     "declaration-colon-newline-after": null,
+    "at-rule-empty-line-before": null,
+    "value-no-vendor-prefix" : null,
     "declaration-empty-line-before": [
       "always",
       {

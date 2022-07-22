@@ -6,10 +6,13 @@ const paths = require('../gulpfile');
 const { reload } = browserSync;
 
 gulp.task('serve', () => {
+  // Убрать параметр server и в proxy указать адрес на котором
+  // размещен сайт в локальном сервере
   browserSync.init({
     server: './src/',
     port: 4000,
     notify: false,
+    // proxy: localhost
   });
 
   gulp.watch(paths.html.watch).on('all', reload);
