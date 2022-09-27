@@ -3,7 +3,10 @@ const autoprefixer = require('gulp-autoprefixer');
 
 const paths = require('../gulpfile');
 
-// Задача для проставления вендорных префиксов в стилях
+/*
+- Простановка вендорных префиксов в уже скомпилированном CSS
+*/
+
 task('autoprefix', () => src(paths.styles.temp + paths.styles.out)
   .pipe(
     autoprefixer({

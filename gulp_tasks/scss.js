@@ -7,7 +7,11 @@ const debug = require('gulp-debug');
 
 const paths = require('../gulpfile');
 
-// Задача компиляции SCSS кода в CSS
+/*
+- Компиляция SCSS фрагментов в CSS код
+- Генерация sourcemap
+*/
+
 task('scss', () => src(paths.styles.src)
   .pipe(sourcemaps.init())
   .pipe(sass.sync())

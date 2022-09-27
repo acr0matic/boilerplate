@@ -87,9 +87,9 @@ task('build', series('clean', series(
     'minify_css',
     'replace',
     'scripts',
-    'layout',
     'images',
     'favicons',
     'move',
+    'layout',
   ],
 )));

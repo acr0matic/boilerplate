@@ -5,7 +5,12 @@ const purgecss = require('gulp-purgecss');
 
 const paths = require('../gulpfile');
 
-// Задача для минификации кода стилей для сокращения скорости загрузки веб-страницы
+/*
+- Удаление неиспользуемых стилей
+- Минификация кода
+- Переименовывание выходного файла
+*/
+
 task('minify_css', () => src(paths.styles.temp + paths.styles.out)
   .pipe(
     purgecss({
