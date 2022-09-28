@@ -2985,6 +2985,13 @@ css-functions-list@^3.1.0:
   resolved "https://registry.yarnpkg.com/css-functions-list/-/css-functions-list-3.1.0.tgz#cf5b09f835ad91a00e5959bcfc627cd498e1321b"
   integrity sha512-/9lCvYZaUbBGvYUgYGFJ4dcYiyqdhSjG7IPVluoV8A1ILjkF7ilmhp1OGUz8n+nmBcu0RNrQAzgD8B6FJbrt2w==
 
+css-parse@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/css-parse/-/css-parse-2.0.0.tgz#a468ee667c16d81ccf05c58c38d2a97c780dbfd4"
+  integrity sha512-UNIFik2RgSbiTwIW1IsFwXWn6vs+bYdq83LKTSOsx7NJR7WII9dxewkHLltfTLVppoUApHV0118a4RZRI9FLwA==
+  dependencies:
+    css "^2.0.0"
+
 css-select-base-adapter@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/css-select-base-adapter/-/css-select-base-adapter-0.1.1.tgz#3b2ff4972cc362ab88561507a95408a1432135d7"
@@ -2999,6 +3006,13 @@ css-select@^2.0.0:
     css-what "^3.2.1"
     domutils "^1.7.0"
     nth-check "^1.0.2"
+
+css-stringify@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/css-stringify/-/css-stringify-2.0.0.tgz#2ef33dcf498c3d3ee82bd73d0a01ac28628cd0fa"
+  integrity sha512-ojAQfb3tnNEoNgZ3xhfJewI54h9n4QcTxAsaaaPGAnGe09PRrwU+D6aitH1NU6o0r94qiWBHHdoFpDVlRgDcew==
+  dependencies:
+    css "^2.0.0"
 
 css-tree@1.0.0-alpha.37:
   version "1.0.0-alpha.37"
@@ -3020,6 +3034,16 @@ css-what@^3.2.1:
   version "3.4.2"
   resolved "https://registry.yarnpkg.com/css-what/-/css-what-3.4.2.tgz#ea7026fcb01777edbde52124e21f327e7ae950e4"
   integrity sha512-ACUm3L0/jiZTqfzRM3Hi9Q8eZqd6IK37mMWPLz9PJxkLWllYeRf+EHUSHYEtFop2Eqytaq1FizFVh7XfBnXCDQ==
+
+css@^2.0.0:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/css/-/css-2.2.4.tgz#c646755c73971f2bba6a601e2cf2fd71b1298929"
+  integrity sha512-oUnjmWpy0niI3x/mPL8dVEI1l7MnG3+HHyRPHf+YFSbK+svOhXpmSOcDURUh2aOCgl2grzrOPt1nHLuCVFULLw==
+  dependencies:
+    inherits "^2.0.3"
+    source-map "^0.6.1"
+    source-map-resolve "^0.5.2"
+    urix "^0.1.0"
 
 css@^3.0.0:
   version "3.0.0"
@@ -5130,6 +5154,14 @@ grapheme-splitter@^1.0.4:
   resolved "https://registry.yarnpkg.com/grapheme-splitter/-/grapheme-splitter-1.0.4.tgz#9cf3a665c6247479896834af35cf1dbb4400767e"
   integrity sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==
 
+group-css-media-queries@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/group-css-media-queries/-/group-css-media-queries-1.4.1.tgz#8e54cb31cc45a9c5e08eb838940b8a28038d7175"
+  integrity sha512-i7GUeETF5bLjrVZCrz1ZwtJdfi3XnPe6UWgTufKDuetBi4V1HDfvY1La5DAqeJzBqOz6DXipRqtK5UYeYzCNpA==
+  dependencies:
+    css-parse "^2.0.0"
+    css-stringify "^2.0.0"
+
 gulp-add-src@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/gulp-add-src/-/gulp-add-src-1.0.0.tgz#efcafb5dc8bfb5e7bca925d1cefc17b02280bbc9"
@@ -5233,6 +5265,15 @@ gulp-favicons@^3.0.0:
   integrity sha512-reRhbOdpT9GTRCMmHr1rXKulssaJp7ZG//z2C2hsuONUOjRcWXK3qiF9AMqomZx8mgs/oNnQCT7UI7lq0zV+Lg==
   dependencies:
     favicons "^6.2.0"
+
+gulp-group-css-media-queries@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/gulp-group-css-media-queries/-/gulp-group-css-media-queries-1.2.2.tgz#c0436b9474086cbe1ab3eb5bc1a3afef4d6b37d6"
+  integrity sha512-uOs8aJ5TV12aRstfc6pn107edDT2XSY7KNAU721Dz+gKHu/AUIlAaOdFdo9n/eHWqfb9QWMArrM8fiPOCqZPGg==
+  dependencies:
+    group-css-media-queries "^1.4.1"
+    plugin-error "^1.0.1"
+    through2 "^2.0.3"
 
 gulp-htmlmin@^5.0.1:
   version "5.0.1"
@@ -9247,7 +9288,7 @@ sort-keys@^2.0.0:
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
   integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
 
-source-map-resolve@^0.5.0:
+source-map-resolve@^0.5.0, source-map-resolve@^0.5.2:
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/source-map-resolve/-/source-map-resolve-0.5.3.tgz#190866bece7553e1f8f267a2ee82c606b5509a1a"
   integrity sha512-Htz+RnsXWk5+P2slx5Jh3Q66vhQj1Cllm0zvnaY98+NFx+Dv2CF/f5O/t8x+KaNdrdIAsruNzoh/KpialbqAnw==

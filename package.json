@@ -28,6 +28,7 @@
     "gulp-concat": "^2.6.1",
     "gulp-debug": "^4.0.0",
     "gulp-favicons": "^3.0.0",
+    "gulp-group-css-media-queries": "^1.2.2",
     "gulp-htmlmin": "^5.0.1",
     "gulp-if": "^3.0.0",
     "gulp-imagemin": "^7.1.0",
