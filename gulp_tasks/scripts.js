@@ -18,7 +18,7 @@ const paths = require('../gulpfile');
 
 task('scripts', () =>
   src(paths.html.src)
-    .pipe(useref())
+    .pipe(useref({ searchPath: './src/' }))
     .pipe(gulpif(['**/*.js'], lazypipe().pipe(babel).pipe(uglify)()))
     .pipe(rename(paths.scripts.minify))
     .pipe(dest(paths.scripts.dist))

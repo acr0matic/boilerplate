@@ -4,12 +4,10 @@
     "es6": true
   },
   "plugins": [
-    "lodash",
     "sonarjs",
     "promise"
   ],
   "extends": [
-    "plugin:lodash/canonical",
     "plugin:sonarjs/recommended",
     "plugin:promise/recommended"
   ],
