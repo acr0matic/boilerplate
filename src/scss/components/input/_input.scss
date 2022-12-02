@@ -1,4 +1,13 @@
 .input {
+  &[type="number"] {
+    appearance: textfield;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      appearance: none;
+    }
+  }
+
   position: relative;
 
   &--error {
