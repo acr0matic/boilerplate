@@ -2,7 +2,6 @@ const { task, src, dest } = require('gulp');
 
 const useref = require('gulp-useref');
 const htmlMin = require('gulp-htmlmin');
-const browsersync = require('browser-sync');
 
 const paths = require('../gulpfile');
 

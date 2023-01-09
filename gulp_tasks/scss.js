@@ -3,7 +3,6 @@ const sourcemaps = require('gulp-sourcemaps');
 const sass = require('gulp-sass')(require('sass'));
 const rename = require('gulp-rename');
 const { stream } = require('browser-sync');
-const debug = require('gulp-debug');
 
 const paths = require('../gulpfile');
 

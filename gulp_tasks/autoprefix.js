@@ -1,5 +1,6 @@
 const { task, src, dest } = require('gulp');
-const autoprefixer = require('gulp-autoprefixer');
+const autoprefixer = require('autoprefixer');
+const postcss = require('gulp-postcss')
 
 const paths = require('../gulpfile');
 
@@ -9,9 +10,6 @@ const paths = require('../gulpfile');
 
 task('autoprefix', () => src(paths.styles.temp + paths.styles.out)
   .pipe(
-    autoprefixer({
-      cascade: false,
-      grid: 'autoplace'
-    }),
+    postcss(autoprefixer()),
   )
   .pipe(dest(paths.styles.temp)));

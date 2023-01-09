@@ -191,7 +191,7 @@ class Form {
 
     // Логируем ошибку, если возникла
     catch (error) {
-      console.error('Ошибка: ' + error);
+      console.error('Ошибка ' + e.name + ":" + e.message + "\n" + e.stack);
     }
 
     // В любом случае убрать стили "отправки"
