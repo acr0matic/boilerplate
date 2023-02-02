@@ -1,4 +1,6 @@
 .input {
+  position: relative;
+
   &[type="number"] {
     appearance: textfield;
 
@@ -7,8 +9,6 @@
       appearance: none;
     }
   }
-
-  position: relative;
 
   &--error {
     .input__field {
@@ -29,7 +29,7 @@
     outline: none;
 
     background-color: transparent;
-    color: $color-text__black;
+    color: $color-text__primary;
 
     font-size: $font-size__text--regular;
 

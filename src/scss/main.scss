@@ -17,11 +17,14 @@
 @import "base/typography";
 @import "base/helpers";
 
-// 4. Импорт надстроек библиотек
+// 4. Импорт ядра
+@import "core/main";
+
+// 5. Импорт надстроек библиотек
 @import "vendors-extended/vendor-extend";
 
-// 5. Подключение стилей компонентов
+// 6. Подключение стилей компонентов
 @import "components/components";
 
-// 6. Подключение стилей разметки
+// 7. Подключение стилей разметки
 @import "layout/layout";

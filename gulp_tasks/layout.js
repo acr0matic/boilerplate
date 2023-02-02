@@ -2,6 +2,7 @@ const { task, src, dest } = require('gulp');
 
 const useref = require('gulp-useref');
 const htmlMin = require('gulp-htmlmin');
+const gulpif = require('gulp-if');
 
 const paths = require('../gulpfile');
 
@@ -11,11 +12,12 @@ const paths = require('../gulpfile');
 */
 
 task('layout', () => src(paths.html.src)
-  .pipe(useref({ searchPath: [paths.styles.src, paths.scripts.src] }))
-  .pipe(htmlMin({
+  .pipe(useref({ noAssets: true }))
+  .pipe(gulpif(process.env.NODE_ENV === 'wordpress', htmlMin()))
+  .pipe(gulpif(process.env.NODE_ENV === 'default', htmlMin({
     sortAttributes: true,
     sortClassName: true,
-    removeComments: true, // Отключить, если требуется посадка верстки на CMS
-    collapseWhitespace: true, // Отключить, если требуется посадка верстки на CMS
-  }))
+    removeComments: true,
+    collapseWhitespace: true,
+  })))
   .pipe(dest(paths.html.dist)));

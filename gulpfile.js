@@ -8,19 +8,22 @@ const paths = {
   dist: './dist/',
 
   html: {
-    src: [
-      './src/**/*.{html,php}',
-      '!./src/php/**/*.php',
-    ],
+    src: './src/*.{html,php}',
     dist: './dist/',
     watch: './src/**/*.{html,php}',
   },
 
+  layout: {
+    src: './src/layout/*.html',
+    temp: './src/',
+    watch: './src/layout/**/*.html',
+  },
+
   styles: {
-    src: './src/scss/**/*.{scss,sass}',
-    dist: './dist/css/',
-    watch: './src/scss/**/*.{scss,sass}',
+    src: ['./src/scss/**/*.{scss,sass}', '!./src/scss/core/**/*.{scss,sass}'],
+    core: './src/scss/core',
     temp: './src/css/',
+    dist: './dist/css/',
     out: 'style.css',
     minify: 'style.min.css',
   },
@@ -82,6 +85,7 @@ requireDir('./gulp_tasks/');
 
 task('build', series('clean', series(
   [
+    'include',
     'scss',
     'autoprefix',
     'minify_css',

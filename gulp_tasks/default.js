@@ -7,4 +7,7 @@ const paths = require('../gulpfile');
 - Компиляция в CSS и перенос в временный каталог
 */
 
-task('default', () => watch(paths.styles.watch, series('scss')));
+task('default', () => {
+  watch(paths.styles.src, series('scss'))
+  watch(paths.layout.watch, series('include'))
+});
