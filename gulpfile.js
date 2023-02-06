@@ -16,7 +16,7 @@ const paths = {
   layout: {
     src: './src/layout/*.html',
     temp: './src/',
-    watch: './src/layout/**/*.html',
+    watch: ['./src/layout/**/*.html', './src/**/*.svg'],
   },
 
   styles: {
@@ -86,6 +86,7 @@ requireDir('./gulp_tasks/');
 task('build', series('clean', series(
   [
     'include',
+    'bootstrap',
     'scss',
     'autoprefix',
     'minify_css',

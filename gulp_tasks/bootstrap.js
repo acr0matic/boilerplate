@@ -8,7 +8,7 @@ const paths = require('../gulpfile');
 - Компиляция ядра в подключаемый файл
 */
 
-task('core', () => src(`${paths.styles.core}/**/main.{scss,sass}`)
+task('bootstrap', () => src(`${paths.styles.core}/**/main.{scss,sass}`)
   .pipe(sass.sync())
   .pipe(rename('_main.scss'))
   .pipe(dest(paths.styles.core)));
