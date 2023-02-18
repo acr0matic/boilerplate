@@ -149,3 +149,4 @@ sftp-config.json
 ### Other ###
 */*/compiled/*.js
 */css/*.css
+src/*.html
