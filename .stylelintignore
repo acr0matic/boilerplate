@@ -3,3 +3,4 @@ src/scss/core/**/*.scss
 src/scss/base/_reset.scss
 src/scss/base/_normalize.scss
 src/scripts/libraries/*.js
+dist/**/*.css

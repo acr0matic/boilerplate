@@ -1,7 +1,5 @@
 const { task, src, dest } = require('gulp');
 
-const lazypipe = require('lazypipe');
-const babel = require('gulp-babel');
 const rename = require('gulp-rename');
 const uglify = require('gulp-uglify');
 const useref = require('gulp-useref');
@@ -17,9 +15,9 @@ const paths = require('../gulpfile');
 */
 
 task('scripts', () =>
-  src(paths.html.src)
+  src(paths.layout.all)
     .pipe(useref({ searchPath: './src/' }))
-    .pipe(gulpif(['**/*.js'], lazypipe().pipe(babel).pipe(uglify)()))
+    .pipe(gulpif(['**/*.js'], uglify()))
     .pipe(rename(paths.scripts.minify))
     .pipe(dest(paths.scripts.dist))
 );

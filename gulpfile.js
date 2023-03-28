@@ -8,6 +8,7 @@ const paths = {
   dist: './dist/',
 
   html: {
+    all: './src/**/*.html',
     src: './src/*.{html,php}',
     dist: './dist/',
     watch: './src/**/*.{html,php}',
@@ -16,6 +17,7 @@ const paths = {
   layout: {
     src: './src/layout/*.html',
     temp: './src/',
+    all: './src/layout/**/*.html',
     watch: ['./src/layout/**/*.html', './src/**/*.svg'],
   },
 
@@ -66,6 +68,7 @@ const paths = {
       '!./src/scripts/**/*.*',
       '!./src/scss/**/*.*',
       '!./src/*.{html,php}',
+      '!./src/layout/**/*.{html,php}',
     ],
     dist: './dist/',
     watch: [
@@ -87,10 +90,7 @@ task('build', series('clean', series(
   [
     'include',
     'bootstrap',
-    'scss',
-    'autoprefix',
-    'minify_css',
-    'replace',
+    'styles',
     'scripts',
     'images',
     'favicons',
