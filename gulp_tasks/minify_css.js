@@ -1,13 +1,11 @@
 const { task, src, dest } = require('gulp');
 const postcss = require('gulp-postcss')
 
-const rename = require('gulp-rename');
-
 const cleanCSS = require('gulp-clean-css');
 const purgecss = require('gulp-purgecss');
 const sortMediaQueries = require('postcss-sort-media-queries');
 
-const paths = require('../gulpfile');
+const path = require('../gulpfile');
 
 /*
 - Удаление неиспользуемых стилей
@@ -15,15 +13,19 @@ const paths = require('../gulpfile');
 - Переименовывание выходного файла
 */
 
-task('minify_css', () => src(paths.styles.temp + paths.styles.out)
+task('minify_css', () => src(`${path.style.compiled}*.css`)
   .pipe(
     purgecss({
-      content: ['src/**/*.{html,php}', 'src/**/*.js'],
       fontFace: true,
       keyframes: true,
       variables: true,
+      whitelistPatternsChildren: [/swiper/],
+      content: [
+        path.html.src,
+        path.script.src,
+      ],
     }),
   )
   .pipe(postcss(sortMediaQueries()))
   .pipe(cleanCSS({ level: 2 }))
-  .pipe(dest(paths.styles.temp)));
+  .pipe(dest(path.style.compiled)));

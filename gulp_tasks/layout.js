@@ -1,15 +1,15 @@
 const gulp = require('gulp');
 const del = require('del');
-const rename = require('gulp-rename');
-const paths = require('../gulpfile');
+const lazypipe = require('lazypipe');
 
 const useref = require('gulp-useref');
 const htmlMin = require('gulp-htmlmin');
 const gulpif = require('gulp-if');
 const replace = require('gulp-replace');
+const rename = require('gulp-rename');
 const gulpIgnore = require('gulp-ignore');
 
-const lazypipe = require('lazypipe');
+const path = require('../gulpfile');
 
 const { src, dest, series } = require('gulp');
 
@@ -28,7 +28,7 @@ const PureLayout = lazypipe()
     removeComments: true,
     collapseWhitespace: true,
   })
-  .pipe(dest, paths.html.dist);
+  .pipe(dest, path.html.dest);
 
 const WPLayout = lazypipe()
   .pipe(htmlMin, {
@@ -42,20 +42,20 @@ const WPLayout = lazypipe()
 
 
 gulp.task('change_layout',
-  () => src(paths.html.all)
+  () => src(path.html.src)
     .pipe(useref({ noAssets: true }))
     .pipe(gulpif(process.env.NODE_ENV === 'default', PureLayout()))
     .pipe(gulpif(process.env.NODE_ENV === 'wordpress', WPLayout()))
-    .pipe(dest(paths.html.dist))
+    .pipe(dest(path.html.dest))
 );
 
 gulp.task('move_layout',
-  () => src(paths.html.dist + '/layout/*.php')
-    .pipe(gulpif(process.env.NODE_ENV === 'wordpress', dest(paths.html.dist)))
+  () => src(path.html.dest + '/layout/*.php')
+    .pipe(gulpif(process.env.NODE_ENV === 'wordpress', dest(path.html.dest)))
 );
 
 gulp.task('clean_layout',
-  async () => gulpif(process.env.NODE_ENV === 'wordpress', del(paths.html.dist + '/layout/*.php')));
+  async () => gulpif(process.env.NODE_ENV === 'wordpress', del(path.html.dest + '/layout/*.php')));
 
 gulp.task('layout',
   series('change_layout', 'move_layout', 'clean_layout'));

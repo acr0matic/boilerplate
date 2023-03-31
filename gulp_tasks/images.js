@@ -3,15 +3,14 @@ const imagemin = require('gulp-imagemin');
 const imageminPngquant = require('imagemin-pngquant');
 const imageminZopfli = require('imagemin-zopfli');
 const imageminMozjpeg = require('imagemin-mozjpeg');
-const browsersync = require('browser-sync');
 
-const paths = require('../gulpfile');
+const path = require('../gulpfile');
 
 /*
 - Оптимизация и сжатие изображений и SVG
 */
 
-gulp.task('images', () => gulp.src(paths.images.src)
+gulp.task('images', () => gulp.src(path.image.src)
   .pipe(imagemin([
     imageminPngquant({
       speed: 5,
@@ -37,5 +36,5 @@ gulp.task('images', () => gulp.src(paths.images.src)
       ],
     }),
   ]))
-  .pipe(gulp.dest(paths.images.dist))
-  .on('end', browsersync.reload));
+  .pipe(gulp.dest(path.image.dest))
+);

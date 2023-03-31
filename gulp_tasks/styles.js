@@ -1,4 +1,4 @@
-const paths = require('../gulpfile');
+const path = require('../gulpfile');
 const { task, series, src, dest } = require('gulp');
 
 const rename = require('gulp-rename');
@@ -26,10 +26,10 @@ const WPCSS = lazypipe()
     ].join('\n'))
   .pipe(replace, '../', 'assets/')
 
-task('css_replace', () => src(paths.styles.temp + paths.styles.out)
+task('css_replace', () => src(`${path.style.compiled}*.css`)
   .pipe(gulpif(process.env.NODE_ENV === 'wordpress', WPCSS()))
-  .pipe(gulpif(process.env.NODE_ENV === 'default', rename(paths.styles.minify)))
-  .pipe(dest(paths.styles.dist)));
+  .pipe(gulpif(process.env.NODE_ENV === 'default', rename(path.style.fileName.minified)))
+  .pipe(dest(path.style.dest)));
 
 task('styles',
   series(

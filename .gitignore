@@ -150,3 +150,4 @@ sftp-config.json
 */*/compiled/*.js
 */css/*.css
 src/*.html
+src/index.html

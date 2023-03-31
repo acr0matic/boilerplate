@@ -1,100 +1,94 @@
-process.env.NODE_ENV = 'default' // default или wordpress
+process.env.NODE_ENV = 'wordpress' // default или wordpress
 
-const { task, series } = require('gulp');
-const requireDir = require('require-dir');
-
-const paths = {
-  src: './src/',
-  dist: './dist/',
+const path = {
+  main: {
+    src: './src/',
+    dist: './dist/',
+  },
 
   html: {
-    all: './src/**/*.html',
-    src: './src/*.{html,php}',
-    dist: './dist/',
-    watch: './src/**/*.{html,php}',
+    src: './src/**/*.html',
+    dest: './dist/',
+
+    layout: {
+      src: './src/layout/**/*.html',
+      dest: './dist/',
+    },
+
+    include: {
+      src: './src/layout/*.html',
+      compiled: './src/',
+    },
   },
 
-  layout: {
-    src: './src/layout/*.html',
-    temp: './src/',
-    all: './src/layout/**/*.html',
-    watch: ['./src/layout/**/*.html', './src/**/*.svg'],
+  style: {
+    src: ['./src/scss/**/*.{scss,sass}', '!./src/scss/core/'],
+    dest: './dist/',
+    compiled: './src/css/',
+
+    core: {
+      src: "./src/scss/core/**/main.{scss,sass}",
+      compiled: "./src/scss/core/",
+    },
+
+    fileName: {
+      default: 'style.css',
+      minified: 'style.min.css',
+    }
   },
 
-  styles: {
-    src: ['./src/scss/**/*.{scss,sass}', '!./src/scss/core/**/*.{scss,sass}'],
-    core: './src/scss/core',
-    temp: './src/css/',
-    dist: './dist/css/',
-    out: 'style.css',
-    minify: 'style.min.css',
-  },
-
-  scripts: {
-    src: './src/scripts/*.js',
-    libraries: './src/scripts/libraries/*.js',
-    polyfills: './src/scripts/polyfills/*.js',
-    dist: './dist/js/',
-    watch: './src/scripts/**/*.js',
-    out: 'script.js',
-    minify: 'script.min.js',
+  script: {
+    src: '.src/scripts/**/*.js',
+    dest: './dist/assets/js/',
+    fileName: {
+      default: 'script.js',
+      minified: 'script.min.js',
+    }
   },
 
   php: {
     src: './src/php/**/*.php',
-    watch: './src/php/**/*.php',
+    dest: './dist/php/',
   },
 
-  favicons: {
-    src: './src/img/favicons/favicon.{jpg,jpeg,png}',
-    watch: './src/img/favicons/favicon.{jpg,jpeg,png}',
-    dist: './dist/img/favicons',
+  image: {
+    src: './src/img/**/*.{jpg,jpeg,png,gif,tiff,svg}',
+    dest: './dist/assets/img',
   },
 
-  images: {
-    src: [
-      './src/img/**/*.{jpg,jpeg,png,gif,tiff,svg}',
-      '!./src/img/favicons/*.{jpg,jpeg,png,gif,tiff}',
-    ],
-    dist: './dist/img',
-    watch: './src/img/**/*.{jpg,jpeg,png,gif,svg,tiff}',
+  favicon: {
+    src: './src/assets/misc/favicons/favicon.png',
+    dest: './dist/assets/img/favicons',
   },
 
-  files: {
-    src: [
-      './src/**/*.*',
-      '!./src/css/**/*.*',
-      '!./src/img/**/*.!(webp)',
-      '!./src/scripts/**/*.*',
-      '!./src/scss/**/*.*',
-      '!./src/*.{html,php}',
-      '!./src/layout/**/*.{html,php}',
-    ],
-    dist: './dist/',
-    watch: [
-      './src/**/*.*',
-      '!./src/css/**/*.*',
-      '!./src/img/**/*.*',
-      '!./src/scripts/**/*.*',
-      '!./src/scss/**/*.*',
-      '!./src/*.{html,php}',
-    ],
+  font: {
+    src: "./src/assets/fonts/**/*.*",
+    dest: "./dist/assets/fonts/",
   },
-};
 
-module.exports = paths;
+  file: {
+    src: "./src/assets/files/**/*.*",
+    dest: "./dist/assets/files/",
+  }
+}
+
+const { task, series } = require('gulp');
+const requireDir = require('require-dir');
+
+module.exports = path;
 
 requireDir('./gulp_tasks/');
 
 task('build', series('clean', series(
   [
     'include',
-    'bootstrap',
+    'compile_core',
     'styles',
     'scripts',
     'images',
     'favicons',
-    'move',
+    'fonts',
+    'files',
     'layout',
   ],
 )));

@@ -4,17 +4,17 @@ const sass = require('gulp-sass')(require('sass'));
 const rename = require('gulp-rename');
 const { stream } = require('browser-sync');
 
-const paths = require('../gulpfile');
+const path = require('../gulpfile');
 
 /*
 - Компиляция SCSS фрагментов в CSS код
 - Генерация sourcemap
 */
 
-task('scss', () => src(paths.styles.src)
+task('scss', () => src(path.style.src)
   .pipe(sourcemaps.init())
   .pipe(sass.sync())
-  .pipe(rename(paths.styles.out))
+  .pipe(rename(path.style.fileName.default))
   .pipe(sourcemaps.write('.'))
-  .pipe(dest(paths.styles.temp))
+  .pipe(dest(path.style.compiled))
   .pipe(stream({ match: '**/*.css' })));

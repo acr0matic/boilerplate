@@ -1,11 +1,12 @@
 const { task, src, dest } = require('gulp');
+const lazypipe = require('lazypipe');
 
-const rename = require('gulp-rename');
 const uglify = require('gulp-uglify');
 const useref = require('gulp-useref');
 const gulpif = require('gulp-if');
+const babel = require('gulp-babel');
 
-const paths = require('../gulpfile');
+const path = require('../gulpfile');
 
 /*
 - Объединение всех файлов скриптов в один
@@ -14,10 +15,20 @@ const paths = require('../gulpfile');
 - Переименовывание выходного файла
 */
 
+const Compile = lazypipe()
+  // .pipe(uglify)
+  .pipe(babel, {
+    presets: [
+      "@babel/preset-env"
+    ],
+    exclude: [
+      "./src/scripts/polyfills/*.js",
+      "./src/scripts/libraries/*.js",
+    ]
+  })
+  .pipe(dest, path.script.dest);
+
 task('scripts', () =>
-  src(paths.layout.all)
+  src(path.html.layout.src)
     .pipe(useref({ searchPath: './src/' }))
-    .pipe(gulpif(['**/*.js'], uglify()))
-    .pipe(rename(paths.scripts.minify))
-    .pipe(dest(paths.scripts.dist))
-);
+    .pipe(gulpif(['**/*.js'], Compile())));

@@ -1,6 +1,6 @@
 const { task, watch, series } = require('gulp');
 
-const paths = require('../gulpfile');
+const path = require('../gulpfile');
 
 /*
 - Наблюдение за изменением SCSS
@@ -8,6 +8,6 @@ const paths = require('../gulpfile');
 */
 
 task('default', () => {
-  watch(paths.styles.src, series('scss'))
-  watch(paths.layout.watch, series('include'))
+  watch(path.style.src, series('scss'))
+  watch(path.html.layout.src, series('include'))
 });

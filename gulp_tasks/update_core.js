@@ -6,7 +6,7 @@ const { task, series } = require('gulp');
 
 task('update_core', series(
   [
-    'bootstrap',
+    'compile_core',
     'scss',
   ],
 ));

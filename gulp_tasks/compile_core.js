@@ -2,13 +2,13 @@ const { task, src, dest } = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 const rename = require('gulp-rename');
 
-const paths = require('../gulpfile');
+const path = require('../gulpfile');
 
 /*
 - Компиляция ядра в подключаемый файл
 */
 
-task('bootstrap', () => src(`${paths.styles.core}/**/main.{scss,sass}`)
+task('compile_core', () => src(path.style.core.src)
   .pipe(sass.sync())
   .pipe(rename('_main.scss'))
-  .pipe(dest(paths.styles.core)));
+  .pipe(dest(path.style.core.compiled)));
