@@ -1,4 +1,4 @@
-process.env.NODE_ENV = 'wordpress' // default или wordpress
+process.env.NODE_ENV = 'default' // default или wordpress
 
 const path = {
   main: {
