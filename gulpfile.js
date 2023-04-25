@@ -22,7 +22,10 @@ const path = {
   },
 
   style: {
-    src: ['./src/scss/**/*.{scss,sass}', '!./src/scss/core/'],
+    src: [
+      './src/scss/**/*.{scss,sass}',
+      '!./src/scss/core/**/*.{scss,sass}'
+    ],
     dest: './dist/',
     compiled: './src/css/',
 

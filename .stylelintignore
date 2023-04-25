@@ -1,6 +1,6 @@
-src/scss/vendors/**/*.scss
-src/scss/core/**/*.scss
-src/scss/base/_reset.scss
-src/scss/base/_normalize.scss
-src/scripts/libraries/*.js
+src/assets/scss/vendors/**/*.scss
+src/assets/scss/core/**/*.scss
+src/assets/scss/base/_reset.scss
+src/assets/scss/base/_normalize.scss
+src/assets/scripts/libraries/*.js
 dist/**/*.css

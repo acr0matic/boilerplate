@@ -29,6 +29,7 @@
 				"content",
 				"position",
 				"z-index",
+        "inset",
 				"top",
 				"right",
 				"bottom",

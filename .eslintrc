@@ -21,8 +21,8 @@
   "ignorePatterns": [
     "gulpfile.js",
     "**/gulp_tasks/*.js",
-    "**/src/scripts/libraries/*.js",
-    "**/src/scripts/polyfills/*.js"
+    "**/src/assets/scripts/libraries/*.js",
+    "**/src/assets/scripts/polyfills/*.js"
   ],
   "rules": {}
 }
