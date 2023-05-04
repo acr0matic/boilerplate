@@ -24,11 +24,17 @@ const WPCSS = lazypipe()
       '',
       ''
     ].join('\n'))
-  .pipe(replace, '../', 'assets/')
+  .pipe(replace, '../assets/', 'assets/')
+
+const Default = lazypipe()
+  .pipe(rename, path.style.fileName.minified)
+  .pipe(replace, '../', '')
+
+
 
 task('css_replace', () => src(`${path.style.compiled}*.css`)
   .pipe(gulpif(process.env.NODE_ENV === 'wordpress', WPCSS()))
-  .pipe(gulpif(process.env.NODE_ENV === 'default', rename(path.style.fileName.minified)))
+  .pipe(gulpif(process.env.NODE_ENV === 'default', Default()))
   .pipe(dest(path.style.dest)));
 
 task('styles',

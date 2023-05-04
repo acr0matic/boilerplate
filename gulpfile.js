@@ -23,15 +23,15 @@ const path = {
 
   style: {
     src: [
-      './src/scss/**/*.{scss,sass}',
-      '!./src/scss/core/**/*.{scss,sass}'
+      './src/assets/scss/**/*.{scss,sass}',
+      '!./src/assets/scss/core/**/*.{scss,sass}'
     ],
     dest: './dist/',
     compiled: './src/css/',
 
     core: {
-      src: "./src/scss/core/**/main.{scss,sass}",
-      compiled: "./src/scss/core/",
+      src: "./src/assets/scss/core/**/main.{scss,sass}",
+      compiled: "./src/assets/scss/core/",
     },
 
     fileName: {
@@ -41,8 +41,8 @@ const path = {
   },
 
   script: {
-    src: '.src/scripts/**/*.js',
-    dest: './dist/assets/js/',
+    src: '.src/assets/scripts/**/*.js',
+    dest: './dist/',
     fileName: {
       default: 'script.js',
       minified: 'script.min.js',
@@ -55,13 +55,13 @@ const path = {
   },
 
   image: {
-    src: './src/img/**/*.{jpg,jpeg,png,gif,tiff,svg}',
+    src: './src/assets/img/**/*.{jpg,jpeg,png,gif,tiff,svg}',
     dest: './dist/assets/img',
   },
 
   favicon: {
     src: './src/assets/misc/favicons/favicon.png',
-    dest: './dist/assets/img/favicons',
+    dest: './dist/assets/misc/favicons',
   },
 
   font: {

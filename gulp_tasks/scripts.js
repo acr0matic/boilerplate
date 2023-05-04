@@ -16,7 +16,6 @@ const path = require('../gulpfile');
 */
 
 const Compile = lazypipe()
-  // .pipe(uglify)
   .pipe(babel, {
     presets: [
       "@babel/preset-env"
@@ -26,6 +25,7 @@ const Compile = lazypipe()
       "./src/scripts/libraries/*.js",
     ]
   })
+  .pipe(uglify)
   .pipe(dest, path.script.dest);
 
 task('scripts', () =>

@@ -1,3 +1,4 @@
+src/css/*.css
 src/assets/scss/vendors/**/*.scss
 src/assets/scss/core/**/*.scss
 src/assets/scss/base/_reset.scss

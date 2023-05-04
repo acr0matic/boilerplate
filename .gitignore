@@ -147,7 +147,5 @@ sftp-config.json
 .vscode/
 
 ### Other ###
-*/*/compiled/*.js
-*/css/*.css
 src/*.html
-src/index.html
+src/css/*.*

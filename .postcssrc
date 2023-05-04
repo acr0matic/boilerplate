@@ -1,7 +1,9 @@
 {
   "map": false,
   "plugins": {
-    "autoprefixer": {},
+    "autoprefixer": {
+      "grid": "autoplace"
+    },
     "postcss-sort-media-queries": {}
   }
 }

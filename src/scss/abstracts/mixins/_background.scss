@@ -1,9 +1,0 @@
-// Миксин задающий задний фон
-@mixin background($imgpath, $size: cover, $position: center center, $repeat: no-repeat) {
-  background: {
-    image: url($imgpath);
-    position: $position;
-    size: $size;
-    repeat: $repeat;
-  }
-}

@@ -53,6 +53,7 @@
     "stylelint-config-standard-scss": "^7.0.1",
     "stylelint-order": "^6.0.3",
     "stylelint-scss": "^4.6.0",
+    "vinyl-ftp": "^0.6.1",
     "yarn": "^1.22.19",
     "yarn-upgrade-all": "^0.7.2"
   }

@@ -2,6 +2,8 @@
 // В этом файле подключаются все шрифты через font-face, если таковые есть
 // -----------------------------------------------------------------------------
 
+$font-family: "Roboto", sans-serif; // Семейство по умолчанию
+
 @include font-face("Roboto", "../assets/fonts/Roboto/Roboto-Light", 300);
 @include font-face("Roboto", "../assets/fonts/Roboto/Roboto-Regular", 400);
 @include font-face("Roboto", "../assets/fonts/Roboto/Roboto-Medium", 500);
