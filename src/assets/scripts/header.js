@@ -1,2 +1,4 @@
-const header = document.getElementById('header');
-const headerHeight = SetHeight(header, 'header');
+import { SetHeight } from "./functions";
+
+const header = document.getElementById("headerds");
+const headerHeight = SetHeight(header, "header");

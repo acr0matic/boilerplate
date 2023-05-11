@@ -20,9 +20,11 @@ task('minify_css', () => src(`${path.style.compiled}*.css`)
       keyframes: true,
       variables: true,
       content: [
-        path.html.src,
         'src/layout/**/*.html',
         'src/assets/scripts/**/*.js',
+      ],
+      whitelistPatterns: [
+        '/swiper-.*$/',
       ],
     }),
   )

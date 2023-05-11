@@ -26,7 +26,7 @@ const path = {
       './src/assets/scss/**/*.{scss,sass}',
       '!./src/assets/scss/core/**/*.{scss,sass}'
     ],
-    dest: './dist/',
+    dest: './dist/css/',
     compiled: './src/css/',
 
     core: {
@@ -41,12 +41,9 @@ const path = {
   },
 
   script: {
-    src: '.src/assets/scripts/**/*.js',
-    dest: './dist/',
-    fileName: {
-      default: 'script.js',
-      minified: 'script.min.js',
-    }
+    src: './src/assets/scripts/index.js',
+    compiled: './src/js/',
+    dest: './dist/js/',
   },
 
   php: {
@@ -85,7 +82,6 @@ requireDir('./gulp_tasks/');
 task('build', series('clean', series(
   [
     'include',
-    'compile_core',
     'styles',
     'scripts',
     'images',

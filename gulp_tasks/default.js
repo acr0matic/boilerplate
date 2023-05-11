@@ -10,4 +10,5 @@ const path = require('../gulpfile');
 task('default', () => {
   watch(path.style.src, series('scss'))
   watch(path.html.layout.src, series('include'))
+  watch(path.script.src, series('webpack'))
 });

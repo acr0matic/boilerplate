@@ -1,10 +1,12 @@
-const lazyLoadInstance = new LazyLoad({
-  elements_selector: '.lazy__item',
+import LazyLoad from "vanilla-lazyload";
+
+export const lazyLoadInstance = new LazyLoad({
+  elements_selector: ".lazy__item",
 
   callback_loaded: (trigger) => {
-    const container = trigger.closest('.lazy');
-    const loader = container.querySelector('.preloader');
+    const container = trigger.closest(".lazy");
+    const loader = container.querySelector(".preloader");
 
-    if (loader) loader.classList.add('preloader--hide');
+    if (loader) loader.classList.add("preloader--hide");
   },
 });

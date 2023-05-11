@@ -1,8 +1,6 @@
 // Подключение переменных
-@import "variables/color";
 @import "variables/typography";
 @import "variables/z-index";
-@import "variables/breakpoint";
 
 // Подключение плейсходеров
 @import "placeholders/placeholders";
@@ -11,4 +9,5 @@
 @import "functions/functions";
 
 // Подключение миксинов
+@import "mixins/container";
 @import "mixins/font";

@@ -14,12 +14,21 @@ html {
 }
 
 body {
-  display: flex;
-  flex-direction: column;
   overflow-x: clip;
-
-  min-height: 100vh;
   font-size: 1rem;
+}
+
+.container {
+  @each $breakpoint, $width in $container-max-widths {
+    @include breakpoint(map.get($grid-breakpoint, $breakpoint)) {
+      max-width: $width;
+    }
+  }
+
+  width: 100%;
+
+  margin: 0 auto;
+  padding: 0 16px;
 }
 
 /**

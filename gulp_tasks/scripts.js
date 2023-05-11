@@ -1,12 +1,9 @@
-const { task, src, dest } = require('gulp');
-const lazypipe = require('lazypipe');
-
-const uglify = require('gulp-uglify');
-const useref = require('gulp-useref');
-const gulpif = require('gulp-if');
-const babel = require('gulp-babel');
-
 const path = require('../gulpfile');
+
+const { task, src, dest } = require('gulp');
+
+const webpack = require('webpack-stream');
+const webpackConfig = require("../webpack.config.js");
 
 /*
 - Объединение всех файлов скриптов в один
@@ -15,20 +12,13 @@ const path = require('../gulpfile');
 - Переименовывание выходного файла
 */
 
-const Compile = lazypipe()
-  .pipe(babel, {
-    presets: [
-      "@babel/preset-env"
-    ],
-    exclude: [
-      "./src/scripts/polyfills/*.js",
-      "./src/scripts/libraries/*.js",
-    ]
-  })
-  .pipe(uglify)
-  .pipe(dest, path.script.dest);
+task('scripts', () => {
+  webpackConfig.mode = 'production';
+  webpackConfig.devtool = 'source-map';
+  webpackConfig.output.filename = "bundle.min.js";
+  webpackConfig.watch = false;
 
-task('scripts', () =>
-  src(path.html.layout.src)
-    .pipe(useref({ searchPath: './src/' }))
-    .pipe(gulpif(['**/*.js'], Compile())));
+  return src(path.script.src)
+    .pipe(webpack(require('../webpack.config.js')))
+    .pipe(dest(path.script.dest))
+});

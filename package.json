@@ -1,6 +1,6 @@
 {
   "name": "frontend-start",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "main": "src/index.html",
   "repository": "https://github.com/acr0matic/frontend-start",
   "author": "acr0matic",
@@ -8,10 +8,12 @@
   "devDependencies": {
     "@babel/cli": "^7.21.0",
     "@babel/core": "^7.21.4",
+    "@babel/eslint-parser": "^7.21.8",
     "@babel/node": "^7.20.7",
     "@babel/preset-env": "^7.21.4",
     "add": "^2.0.6",
     "autoprefixer": "^10.4.14",
+    "babel-loader": "^9.1.2",
     "browser-sync": "^2.29.1",
     "del": "^6.0.0",
     "eslint": "^8.37.0",
@@ -54,7 +56,12 @@
     "stylelint-order": "^6.0.3",
     "stylelint-scss": "^4.6.0",
     "vinyl-ftp": "^0.6.1",
+    "webpack": "^5.82.1",
+    "webpack-stream": "^7.0.0",
     "yarn": "^1.22.19",
     "yarn-upgrade-all": "^0.7.2"
+  },
+  "dependencies": {
+    "vanilla-lazyload": "^17.8.3"
   }
 }

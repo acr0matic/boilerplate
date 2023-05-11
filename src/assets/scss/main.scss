@@ -1,30 +1,36 @@
+@use "sass:map";
+@use "sass:color";
+@use "sass:math";
+
 @charset "UTF-8";
 
-// 0. Подключение первичных стилей
+// Подключение первичных стилей
 @import "base/normalize";
 
-// 1. Импорт библиотек
+// Импорт библиотек
 @import "vendors/main";
 
-// 2. Подключение базовых функций и переменных
-@import "abstracts/abstracts";
+// Подключение базовых функций и переменных
+@import "abstracts/main";
 
-// 3. Подключение основных стилей
-@import "base/settings";
+@import "settings/breakpoint";
+@import "settings/container";
+@import "settings/common";
+@import "settings/palette";
+@import "settings/typography";
+
+// Подключение основных стилей
 @import "base/reset";
 @import "base/base";
 @import "base/fonts";
 @import "base/typography";
-@import "base/helpers";
+@import "base/utilites";
 
-// 4. Импорт ядра
-@import "core/main";
+// Импорт надстроек библиотек
+@import "vendors-extended/main";
 
-// 5. Импорт надстроек библиотек
-@import "vendors-extended/vendor-extend";
+// Подключение стилей компонентов
+@import "components/main";
 
-// 6. Подключение стилей компонентов
-@import "components/components";
-
-// 7. Подключение стилей разметки
-@import "layout/layout";
+// Подключение стилей разметки
+@import "layout/main";
