@@ -1,4 +1,4 @@
-const { task, watch, series } = require('gulp');
+const { task, watch, series, parallel } = require('gulp');
 
 const path = require('../gulpfile');
 
@@ -9,6 +9,8 @@ const path = require('../gulpfile');
 
 task('default', () => {
   watch(path.style.src, series('scss'))
-  watch(path.html.layout.src, series('include'))
   watch(path.script.src, series('webpack'))
+  watch(path.html.layout.src, series('include'))
 });
+
+

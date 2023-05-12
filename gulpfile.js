@@ -41,7 +41,8 @@ const path = {
   },
 
   script: {
-    src: './src/assets/scripts/index.js',
+    src: './src/assets/scripts/**/*.js',
+    entry: './src/assets/scripts/index.js',
     compiled: './src/js/',
     dest: './dist/js/',
   },
