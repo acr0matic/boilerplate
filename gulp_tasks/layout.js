@@ -36,7 +36,7 @@ const WPLayout = lazypipe()
     sortClassName: true,
   })
   .pipe(rename, { extname: ".php" })
-  .pipe(replace, 'src="img/', `src="<?php bloginfo('template_directory') ?>/assets/img/`)
+  .pipe(replace, 'src="assets/img/', `src="<?php bloginfo('template_directory') ?>/assets/img/`)
   .pipe(replace, /@@(?!include)[^<]+/g, `<?php the_(); ?>`)
 
 
