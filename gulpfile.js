@@ -1,4 +1,4 @@
-process.env.NODE_ENV = 'default' // default или wordpress
+process.env.NODE_ENV = 'default' // default / wordpress / CMS
 
 const path = {
   main: {
@@ -27,7 +27,7 @@ const path = {
       '!./src/assets/scss/core/**/*.{scss,sass}'
     ],
     dest: './dist/css/',
-    compiled: './src/css/',
+    compiled: './src/temp/',
 
     core: {
       src: "./src/assets/scss/core/**/main.{scss,sass}",
@@ -43,7 +43,8 @@ const path = {
   script: {
     src: './src/assets/scripts/**/*.js',
     entry: './src/assets/scripts/index.js',
-    compiled: './src/js/',
+    libraries: './src/assets/scripts/libraries/*',
+    compiled: './src/temp/',
     dest: './dist/js/',
   },
 
@@ -73,7 +74,12 @@ const path = {
   }
 }
 
-const { task, series } = require('gulp');
+
+/*
+- Сборка, компиляция и наблюдение за имзенениями
+*/
+
+const { task, series, parallel, watch } = require('gulp');
 const requireDir = require('require-dir');
 
 module.exports = path;
@@ -92,3 +98,17 @@ task('build', series('clean', series(
     'layout',
   ],
 )));
+
+task('watch', () => {
+  watch(path.style.src, series('scss'))
+  watch(path.html.layout.src, series('include'))
+});
+
+task('default', series([
+  'include',
+  'scss',
+  parallel([
+    'watch',
+    'webpack',
+  ])
+]));

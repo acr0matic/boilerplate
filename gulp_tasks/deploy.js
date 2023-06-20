@@ -14,6 +14,6 @@ gulp.task('deploy', function () {
   });
 
   return gulp.src('./dist/**/*', { base: './dist/', buffer: false })
-    .pipe(conn.newer('/layout'))
-    .pipe(conn.dest('/layout'));
+    .pipe(conn.newer('/'))
+    .pipe(conn.dest('/'));
 });

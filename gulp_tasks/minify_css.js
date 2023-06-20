@@ -26,6 +26,7 @@ task('minify_css', () => src(`${path.style.compiled}*.css`)
       },
       content: [
         'src/layout/**/*.html',
+        'src/assets/img/**/*.svg',
         'src/assets/scripts/**/*.js',
       ],
     }),

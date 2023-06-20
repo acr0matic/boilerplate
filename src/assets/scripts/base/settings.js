@@ -5,3 +5,7 @@ export const StyleСlass = {
     "open": "mobile-menu--open",
   },
 };
+
+export const breakpoint = {
+  'size': '(min-width: )',
+};

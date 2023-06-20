@@ -1,7 +1,7 @@
 module.exports = {
   watch: true,
   mode: "development",
-  devtool: "eval-source-map",
+  devtool: "source-map",
   stats: "minimal",
   output: {
     filename: "bundle.js",
@@ -15,7 +15,12 @@ module.exports = {
         use: {
           loader: "babel-loader",
         }
-      }
+      },
+
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
     ]
   },
 };

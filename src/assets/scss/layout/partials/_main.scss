@@ -1,8 +1,15 @@
+@import "block/main";
+
+@import "global/page";
 @import "global/header";
 @import "global/footer";
 @import "global/section";
-@import "global/nav";
-@import "global/mobile-menu";
+
+@import "global/nav/common";
+@import "global/nav/header";
+@import "global/nav/mobile";
+@import "global/nav/footer";
+
+@import "global/mobile";
 
 @import "section/main";
-@import "block/main";

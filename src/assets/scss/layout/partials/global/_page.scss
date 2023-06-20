@@ -10,4 +10,8 @@
   & > main {
     flex-grow: 1;
   }
+
+  &__body {
+    overflow-x: hidden;
+  }
 }

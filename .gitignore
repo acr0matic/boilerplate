@@ -17,5 +17,4 @@ dist
 
 src/*.html
 !/src/index.html
-src/css/
-src/js/
+src/temp/

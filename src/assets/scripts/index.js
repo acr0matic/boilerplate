@@ -1,3 +1,3 @@
-import { isSafari, StyleСlass } from "./base";
-import "./init";
-import "./header";
+import "./common/init";
+
+import "./partials/header";

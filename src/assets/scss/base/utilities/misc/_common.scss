@@ -1,0 +1,11 @@
+.disable-scroll {
+  overflow: hidden;
+}
+
+.position-sticky {
+  top: calc(var(--header-height) + 32px);
+}
+
+.collapse:not(.collapse_show) {
+  display: none;
+}

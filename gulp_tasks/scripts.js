@@ -1,6 +1,6 @@
 const path = require('../gulpfile');
 
-const { task, src, dest } = require('gulp');
+const { series, task, src, dest } = require('gulp');
 
 const webpack = require('webpack-stream');
 const webpackConfig = require("../webpack.config.js");
@@ -12,13 +12,21 @@ const webpackConfig = require("../webpack.config.js");
 - Переименовывание выходного файла
 */
 
-task('scripts', () => {
+task('compile_js', () => {
   webpackConfig.mode = 'production';
   webpackConfig.devtool = 'source-map';
   webpackConfig.output.filename = "bundle.min.js";
   webpackConfig.watch = false;
 
-  return src(path.script.src)
+  return src(path.script.entry)
     .pipe(webpack(require('../webpack.config.js')))
     .pipe(dest(path.script.dest))
 });
+
+task('libraries_js', () => {
+  return src(path.script.libraries)
+    .pipe(dest(path.script.dest + 'libraries/'))
+});
+
+task('scripts',
+  series('compile_js', 'libraries_js'));
