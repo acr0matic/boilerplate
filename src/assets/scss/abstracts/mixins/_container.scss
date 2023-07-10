@@ -2,7 +2,7 @@
 @mixin make-container {
   @each $breakpoint, $width in $container-max-widths {
     @include breakpoint(map.get($grid-breakpoint, $breakpoint)) {
-      max-width: $width;
+      max-width: $width + $container-padding * 2;
     }
   }
 
@@ -13,7 +13,7 @@
 
   &--wide {
     @include breakpoint(map.get($grid-breakpoint, "laptop")) {
-      max-width: $container-wide-width;
+      max-width: $container-wide-width + $container-padding * 2;
     }
   }
 }

@@ -18,3 +18,4 @@ dist
 src/*.html
 !/src/index.html
 src/temp/
+*.mp4

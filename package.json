@@ -60,5 +60,8 @@
     "webpack-stream": "^7.0.0",
     "yarn": "^1.22.19",
     "yarn-upgrade-all": "^0.7.2"
+  },
+  "dependencies": {
+    "vanilla-lazyload": "^17.8.3"
   }
 }

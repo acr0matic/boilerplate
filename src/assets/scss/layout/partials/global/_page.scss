@@ -5,6 +5,8 @@
 .page {
   display: flex;
   flex-direction: column;
+
+  overflow-x: hidden;
   min-height: 100vh;
 
   & > main {
@@ -12,6 +14,6 @@
   }
 
   &__body {
-    overflow-x: hidden;
+    overflow: hidden;
   }
 }
