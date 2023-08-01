@@ -279,6 +279,7 @@
     "declaration-colon-newline-after": null,
     "at-rule-empty-line-before": null,
     "value-no-vendor-prefix" : null,
+    "property-no-vendor-prefix": null,
     "declaration-empty-line-before": [
       "always",
       {
