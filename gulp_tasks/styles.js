@@ -32,7 +32,8 @@ const WPCSS = lazypipe()
 task('css_replace', () => src(`${path.style.compiled}*.css`)
   .pipe(gulpif(process.env.NODE_ENV === 'wordpress', WPCSS()))
   .pipe(rename(path.style.fileName.minified))
-  .pipe(gulpif(process.env.NODE_ENV === 'default', dest(path.style.dest))))
+  .pipe(gulpif(process.env.NODE_ENV === 'default', dest(path.style.dest)))
+  .pipe(gulpif(process.env.NODE_ENV === 'CMS', dest(path.style.dest))))
 
 task('styles',
   series(

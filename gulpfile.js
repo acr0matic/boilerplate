@@ -54,7 +54,7 @@ const path = {
   },
 
   image: {
-    src: './src/assets/img/**/*.{jpg,jpeg,png,gif,tiff,svg}',
+    src: './src/assets/img/**/*.{jpg,jpeg,png,gif,tiff,svg,webp}',
     dest: './dist/assets/img',
   },
 

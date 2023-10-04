@@ -27,6 +27,7 @@
     "gulp-add-src": "^1.0.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-debug": "^4.0.0",
+    "gulp-eol": "^0.2.0",
     "gulp-favicons": "^3.0.0",
     "gulp-file-include": "^2.3.0",
     "gulp-header": "^2.0.9",

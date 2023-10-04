@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const del = require('del');
 const lazypipe = require('lazypipe');
 
+const eol = require('gulp-eol');
 const useref = require('gulp-useref');
 const htmlMin = require('gulp-htmlmin');
 const gulpif = require('gulp-if');
@@ -43,6 +44,7 @@ const WPLayout = lazypipe()
 
 gulp.task('change_layout',
   () => src(path.html.src)
+    .pipe(eol('\r\n'))
     .pipe(useref({ noAssets: true }))
     .pipe(gulpif(process.env.NODE_ENV === 'default', PureLayout()))
     .pipe(gulpif(process.env.NODE_ENV === 'wordpress', WPLayout()))
