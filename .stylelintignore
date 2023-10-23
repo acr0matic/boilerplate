@@ -1,4 +1,6 @@
-src/css/*.css
+src/temp/*.css
+src/temp/*.js
+src/assets/scss/lagacy/**/*.scss
 src/assets/scss/vendors/**/*.scss
 src/assets/scss/core/**/*.scss
 src/assets/scss/base/_reset.scss

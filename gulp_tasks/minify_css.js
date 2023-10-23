@@ -32,5 +32,5 @@ task('minify_css', () => src(`${path.style.compiled}*.css`)
     }),
   )
   .pipe(postcss(sortMediaQueries()))
-  .pipe(cleanCSS({ level: 2 }))
+  .pipe(cleanCSS({ level: { 1: { specialComments: 0 } } }))
   .pipe(dest(path.style.compiled)));

@@ -26,8 +26,8 @@ const PureLayout = lazypipe()
   .pipe(htmlMin, {
     sortAttributes: true,
     sortClassName: true,
-    removeComments: true,
-    collapseWhitespace: true,
+    removeComments: false,
+    collapseWhitespace: false,
   })
   .pipe(dest, path.html.dest);
 

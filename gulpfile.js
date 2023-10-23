@@ -1,4 +1,4 @@
-process.env.NODE_ENV = 'wordpress' // default / wordpress / CMS
+process.env.NODE_ENV = 'default' // default / wordpress / CMS
 
 const path = {
   main: {
