@@ -9,3 +9,17 @@ export const StyleСlass = {
 export const breakpoint = {
   'size': '(min-width: )',
 };
+
+export const modalParams = {
+  awaitCloseAnimation: true,
+  disableFocus: true,
+  disableScroll: true,
+
+  onShow: modal => {
+    window.currentModal = modal.id;
+  },
+
+  onClose: () => {
+    window.currentModal = null;
+  }
+};

@@ -3,6 +3,28 @@
 .lazy {
   position: relative;
 
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image: url("../assets/img/misc/preloader.svg");
+    background-position: center;
+    background-size: 48px;
+    background-repeat: no-repeat;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: $transition ease;
+  }
+
+  &--preloader {
+    &::after {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
   &__item {
     opacity: 0;
     visibility: hidden;
