@@ -13,7 +13,7 @@ const path = require('../gulpfile');
 - Переименовывание выходного файла
 */
 
-task('minify_css', () => src(`${path.style.compiled}*.css`)
+task('minify_css', () => src(`${path.style.compiled}/style.css`)
   .pipe(
     purgecss({
       fontFace: true,

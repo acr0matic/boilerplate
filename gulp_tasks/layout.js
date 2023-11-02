@@ -38,6 +38,7 @@ const WPLayout = lazypipe()
   })
   .pipe(rename, { extname: ".php" })
   .pipe(replace, 'src="assets/img/', `src="<?php bloginfo('template_directory') ?>/assets/img/`)
+  .pipe(replace, 'bg="assets/img/', `bg="<?php bloginfo('template_directory') ?>/assets/img/`)
   .pipe(replace, /@@((?!include)[\s\S][^<"]*)/g, `<?php the_(''); ?>`)
   .pipe(replace, "assets/scripts/libraries/", "js/libraries/")
 
